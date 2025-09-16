@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - LOCAYA</title>
+    <meta name="description" content="Connectez-vous à votre compte LOCAYA pour gérer vos favoris et recherches.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="flex-between">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    LOCAYA
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <a href="#" class="btn btn-outline active">Se connecter</a>
+                        <a href="signup.html" class="btn btn-primary">S'inscrire</a>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-card animate-on-scroll scale-in">
+            <div class="auth-header">
+                <h1 class="auth-title">Bienvenue sur LOCAYA</h1>
+                <p class="auth-subtitle">Connectez-vous pour accéder à votre espace personnel</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
+                    <label for="email">Email</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" name="password" required placeholder=" " autocomplete="current-password">
+                    <label for="password">Mot de passe</label>
+                    <button type="button" class="password-toggle" id="togglePassword" 
+                            style="position: absolute; right: var(--spacing-4); top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: var(--font-size-lg);">
+                        👁️
+                    </button>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-5);">
+                    <label style="display: flex; align-items: center; gap: var(--spacing-2); cursor: pointer;">
+                        <input type="checkbox" id="rememberMe" name="remember" 
+                               style="width: 18px; height: 18px; accent-color: var(--primary-violet);">
+                        <span style="color: var(--gray-600); font-size: var(--font-size-sm);">Se souvenir de moi</span>
+                    </label>
+                    
+                    <a href="#" onclick="showForgotPassword()" style="color: var(--primary-violet); font-size: var(--font-size-sm);">
+                        Mot de passe oublié ?
+                    </a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="loginBtn">
+                    🔐 Se connecter
+                </button>
+                
+                <div id="loginError" class="error-message" style="display: none; color: var(--accent-red); text-align: center; margin-top: var(--spacing-4); padding: var(--spacing-3); background: rgba(255, 0, 0, 0.1); border-radius: var(--radius-sm);">
+                </div>
+            </form>
+            
+            <div class="auth-divider">
+                <span>ou</span>
+            </div>
+            
+            <div style="display: flex; gap: var(--spacing-3); margin-bottom: var(--spacing-6);">
+                <button type="button" onclick="socialLogin('google')" class="btn btn-outline" style="flex: 1;">
+                    🔍 Google
+                </button>
+                <button type="button" onclick="socialLogin('facebook')" class="btn btn-outline" style="flex: 1;">
+                    📘 Facebook
+                </button>
+            </div>
+            
+            <div class="auth-footer">
+                <p style="color: var(--gray-600);">
+                    Pas encore de compte ?
+                    <a href="signup.html" style="color: var(--primary-violet); font-weight: var(--font-weight-medium);">
+                        Créer un compte
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Accounts Modal -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Comptes de démonstration</h3>
+                <button class="modal-close" onclick="closeModal('demoModal')">&times;</button>
+            </div>
+            
+            <p style="margin-bottom: var(--spacing-6); color: var(--gray-600);">
+                Utilisez ces comptes pour tester l'application :
+            </p>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                <div class="card" style="padding: var(--spacing-4);">
+                    <h4 style="margin-bottom: var(--spacing-2);">👤 Utilisateur Standard</h4>
+                    <p style="margin-bottom: var(--spacing-3); color: var(--gray-600);">
+                        <strong>Email :</strong> user@locaya.ci<br>
+                        <strong>Mot de passe :</strong> demo123
+                    </p>
+                    <button onclick="fillDemoAccount('user@locaya.ci', 'demo123')" class="btn btn-primary btn-sm">
+                        Utiliser ce compte
+                    </button>
+                </div>
+                
+                <div class="card" style="padding: var(--spacing-4);">
+                    <h4 style="margin-bottom: var(--spacing-2);">🏠 Propriétaire</h4>
+                    <p style="margin-bottom: var(--spacing-3); color: var(--gray-600);">
+                        <strong>Email :</strong> owner@locaya.ci<br>
+                        <strong>Mot de passe :</strong> demo123
+                    </p>
+                    <button onclick="fillDemoAccount('owner@locaya.ci', 'demo123')" class="btn btn-primary btn-sm">
+                        Utiliser ce compte
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Demo Button -->
+    <button onclick="showModal('demoModal')" 
+            style="position: fixed; bottom: var(--spacing-6); right: var(--spacing-6); background: var(--gradient-primary); color: white; border: none; padding: var(--spacing-4); border-radius: var(--radius-full); box-shadow: var(--shadow-lg); cursor: pointer; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); animation: pulse 2s infinite; z-index: var(--z-tooltip);"
+            title="Comptes de démonstration">
+        🎭 Demo
+    </button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        /**
+         * Module de connexion
+         */
+        
+        // Comptes de démonstration
+        const demoAccounts = {
+            'user@locaya.ci': {
+                id: 1,
+                name: 'Marie Kouassi',
+                email: 'user@locaya.ci',
+                password: 'demo123',
+                avatar: 'MK',
+                joinDate: '2024-01-15',
+                accountType: 'user',
+                phone: '+225 07 08 09 10 11'
+            },
+            'owner@locaya.ci': {
+                id: 2,
+                name: 'Kofi Asante',
+                email: 'owner@locaya.ci',
+                password: 'demo123',
+                avatar: 'KA',
+                joinDate: '2024-01-10',
+                accountType: 'owner',
+                phone: '+225 01 02 03 04 05'
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const togglePassword = document.getElementById('togglePassword');
+            
+            // Toggle password visibility
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const passwordInput = document.getElementById('password');
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        togglePassword.textContent = '🙈';
+                    } else {
+                        passwordInput.type = 'password';
+                        togglePassword.textContent = '👁️';
+                    }
+                });
+            }
+            
+            // Form submission
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+            
+            // Auto-focus on email field
+            const emailInput = document.getElementById('email');
+            if (emailInput) {
+                setTimeout(() => emailInput.focus(), 500);
+            }
+        });
+        
+        /**
+         * Gère la connexion
+         */
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const email = formData.get('email').toLowerCase().trim();
+            const password = formData.get('password');
+            const remember = formData.get('remember');
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const errorDiv = document.getElementById('loginError');
+            
+            // Reset error
+            errorDiv.style.display = 'none';
+            
+            // Loading state
+            loginBtn.innerHTML = '<span class="spin">⏳</span> Connexion...';
+            loginBtn.disabled = true;
+            
+            // Simulate login delay
+            setTimeout(() => {
+                const account = demoAccounts[email];
+                
+                if (account && account.password === password) {
+                    // Connexion réussie
+                    const userData = { ...account };
+                    delete userData.password;
+                    
+                    // Sauvegarder l'utilisateur
+                    localStorage.setItem('currentUser', JSON.stringify(userData));
+                    if (remember) {
+                        localStorage.setItem('rememberMe', 'true');
+                    }
+                    
+                    showToast('Connexion réussie', `Bienvenue ${userData.name} !`, 'success');
+                    
+                    // Redirection
+                    setTimeout(() => {
+                        const returnUrl = new URLSearchParams(window.location.search).get('return');
+                        window.location.href = returnUrl || 'dashboard.html';
+                    }, 1500);
+                    
+                } else {
+                    // Connexion échouée
+                    loginBtn.innerHTML = '🔐 Se connecter';
+                    loginBtn.disabled = false;
+                    
+                    errorDiv.textContent = 'Email ou mot de passe incorrect';
+                    errorDiv.style.display = 'block';
+                    errorDiv.classList.add('shake');
+                    
+                    setTimeout(() => {
+                        errorDiv.classList.remove('shake');
+                    }, 600);
+                    
+                    showToast('Connexion échouée', 'Vérifiez vos identifiants', 'error');
+                }
+            }, 1500);
+        }
+        
+        /**
+         * Rempli le formulaire avec un compte de démo
+         */
+        function fillDemoAccount(email, password) {
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+            closeModal('demoModal');
+            
+            showToast('Compte de démo', 'Cliquez sur "Se connecter" pour continuer', 'info');
+        }
+        
+        /**
+         * Connexion sociale (simulation)
+         */
+        function socialLogin(provider) {
+            showToast('Fonctionnalité prochainement', `Connexion via ${provider} bientôt disponible`, 'info');
+        }
+        
+        /**
+         * Affiche le modal de mot de passe oublié
+         */
+        function showForgotPassword() {
+            showToast('Mot de passe oublié', 'Fonctionnalité en cours de développement', 'info');
+        }
+    </script>
+</body>
+</html>

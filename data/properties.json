@@ -1,0 +1,530 @@
+[
+  {
+    "id": 1,
+    "title": "Villa moderne avec piscine - Cocody",
+    "location": "Cocody, Abidjan",
+    "price": 850000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Villa",
+    "status": "Disponible",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 250,
+    "images": [
+      "https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg",
+      "https://i.ibb.co/QxvCPZv/5931379510161296298-120.jpg",
+      "https://i.ibb.co/gZZJM44d/5931379510161296297-120.jpg",
+      "https://i.ibb.co/Xf3WWcmz/5931379510161296296-120.jpg"
+    ],
+    "description": "Magnifique villa moderne située dans le prestigieux quartier de Cocody. Cette propriété d'exception offre un cadre de vie luxueux avec une piscine privée et un jardin paysager. La villa dispose de 4 chambres spacieuses, 3 salles de bain modernes, et d'espaces de vie ouverts baignés de lumière naturelle. Parfaite pour une famille recherchant le confort et l'élégance dans un environnement sécurisé.",
+    "amenities": [
+      "Piscine privée",
+      "Jardin paysager",
+      "Parking 2 voitures",
+      "Cuisine équipée",
+      "Climatisation",
+      "Sécurité 24h/24",
+      "Internet haut débit",
+      "Terrasse",
+      "Buanderie",
+      "Cave à vin"
+    ],
+    "contact": {
+      "owner": "Kofi Asante",
+      "phone": "+225 01 02 03 04 05",
+      "email": "kofi.asante@email.com"
+    },
+    "coordinates": {
+      "lat": 5.3600,
+      "lng": -4.0083
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "Marie Kouassi",
+        "rating": 5,
+        "comment": "Villa exceptionnelle ! Le cadre est magnifique et la piscine est un vrai plus. Propriétaire très professionnel.",
+        "date": "2024-01-15",
+        "avatar": "MK"
+      },
+      {
+        "id": 2,
+        "user": "Jean Baptiste",
+        "rating": 4,
+        "comment": "Très belle propriété, bien entretenue. Le quartier est calme et sécurisé.",
+        "date": "2024-01-10",
+        "avatar": "JB"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Appartement standing - Plateau",
+    "location": "Plateau, Abidjan",
+    "price": 450000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Appartement",
+    "status": "Disponible",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "area": 120,
+    "images": [
+      "https://i.ibb.co/s9Fw8zYT/5931379510161296295-120.jpg",
+      "https://i.ibb.co/WNDKDV12/5931379510161296294-120.jpg",
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg",
+      "https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg"
+    ],
+    "description": "Superbe appartement de standing situé au cœur du Plateau, le quartier d'affaires d'Abidjan. Cet espace moderne et élégant offre une vue panoramique sur la lagune et la ville. L'appartement dispose de 2 chambres confortables, 2 salles de bain, d'un salon spacieux et d'une cuisine entièrement équipée. Idéal pour les professionnels ou couples recherchant un logement haut de gamme en centre-ville.",
+    "amenities": [
+      "Vue sur lagune",
+      "Ascenseur",
+      "Parking sécurisé",
+      "Cuisine équipée",
+      "Climatisation",
+      "Concierge",
+      "Salle de sport",
+      "Balcon",
+      "Internet inclus",
+      "Proche transports"
+    ],
+    "contact": {
+      "owner": "Fatou Diallo",
+      "phone": "+225 07 08 09 10 11",
+      "email": "fatou.diallo@email.com"
+    },
+    "coordinates": {
+      "lat": 5.3197,
+      "lng": -4.0267
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "id": 3,
+        "user": "Ahmed Traoré",
+        "rating": 5,
+        "comment": "Appartement parfait pour les déplacements professionnels. Vue magnifique et très bien situé.",
+        "date": "2024-01-20",
+        "avatar": "AT"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Duplex familial - Marcory",
+    "location": "Marcory, Abidjan",
+    "price": 320000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Duplex",
+    "status": "Disponible",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 180,
+    "images": [
+      "https://i.ibb.co/gZZJM44d/5931379510161296297-120.jpg",
+      "https://i.ibb.co/Xf3WWcmz/5931379510161296296-120.jpg",
+      "https://i.ibb.co/s9Fw8zYT/5931379510161296295-120.jpg",
+      "https://i.ibb.co/QxvCPZv/5931379510161296298-120.jpg"
+    ],
+    "description": "Charmant duplex familial dans le quartier résidentiel de Marcory. Cette propriété sur deux niveaux offre un espace de vie généreux avec 3 chambres, 2 salles de bain, un salon-salle à manger lumineux et une cuisine fonctionnelle. Le duplex dispose également d'une petite cour privative et d'un espace de stationnement. Parfait pour une famille recherchant un cadre de vie confortable à prix abordable.",
+    "amenities": [
+      "Deux niveaux",
+      "Cour privative",
+      "Parking",
+      "Cuisine aménagée",
+      "Climatisation partielle",
+      "Quartier calme",
+      "Proche écoles",
+      "Buanderie",
+      "Terrasse",
+      "Sécurité quartier"
+    ],
+    "contact": {
+      "owner": "Mamadou Sanogo",
+      "phone": "+225 05 06 07 08 09",
+      "email": "mamadou.sanogo@email.com"
+    },
+    "coordinates": {
+      "lat": 5.2928,
+      "lng": -4.0267
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "id": 4,
+        "user": "Awa Kone",
+        "rating": 4,
+        "comment": "Duplex agréable pour une famille. Les enfants adorent la cour. Bon rapport qualité-prix.",
+        "date": "2024-01-18",
+        "avatar": "AK"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Studio moderne - Treichville",
+    "location": "Treichville, Abidjan",
+    "price": 180000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Studio",
+    "status": "Disponible",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "area": 45,
+    "images": [
+      "https://i.ibb.co/WNDKDV12/5931379510161296294-120.jpg",
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg",
+      "https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg",
+      "https://i.ibb.co/QxvCPZv/5931379510161296298-120.jpg"
+    ],
+    "description": "Studio moderne et bien agencé dans le dynamique quartier de Treichville. Cet espace optimisé offre tout le confort nécessaire avec une cuisine intégrée, une salle d'eau moderne et un coin nuit bien délimité. Situé dans un immeuble récent avec ascenseur, ce studio est idéal pour les jeunes professionnels ou étudiants recherchant un logement fonctionnel en ville.",
+    "amenities": [
+      "Meublé",
+      "Ascenseur",
+      "Cuisine intégrée",
+      "Climatisation",
+      "Internet haut débit",
+      "Proche transport",
+      "Sécurité immeuble",
+      "Balcon",
+      "Buanderie commune",
+      "Commerce à proximité"
+    ],
+    "contact": {
+      "owner": "Adjoua Yao",
+      "phone": "+225 09 10 11 12 13",
+      "email": "adjoua.yao@email.com"
+    },
+    "coordinates": {
+      "lat": 5.2808,
+      "lng": -4.0267
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "id": 5,
+        "user": "Koffi Mensah",
+        "rating": 4,
+        "comment": "Studio parfait pour un étudiant. Bien situé et moderne. Propriétaire arrangeante.",
+        "date": "2024-01-12",
+        "avatar": "KM"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Maison traditionnelle - Adjamé",
+    "location": "Adjamé, Abidjan",
+    "price": 280000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Maison",
+    "status": "Disponible",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 150,
+    "images": [
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg",
+      "https://i.ibb.co/gZZJM44d/5931379510161296297-120.jpg",
+      "https://i.ibb.co/s9Fw8zYT/5931379510161296295-120.jpg",
+      "https://i.ibb.co/Xf3WWcmz/5931379510161296296-120.jpg"
+    ],
+    "description": "Authentique maison traditionnelle dans le quartier populaire d'Adjamé. Cette propriété de plain-pied offre un cadre de vie authentique avec ses 3 chambres, 2 salles d'eau et ses espaces communs généreux. La maison dispose d'une grande cour traditionnelle, parfaite pour les réunions familiales et les activités extérieures. Idéale pour une famille attachée aux valeurs traditionnelles.",
+    "amenities": [
+      "Grande cour",
+      "Plain-pied",
+      "Parking",
+      "Cuisine traditionnelle",
+      "Ventilateurs",
+      "Puits",
+      "Jardin potager",
+      "Véranda",
+      "Débarras",
+      "Quartier animé"
+    ],
+    "contact": {
+      "owner": "Konan Akissi",
+      "phone": "+225 03 04 05 06 07",
+      "email": "konan.akissi@email.com"
+    },
+    "coordinates": {
+      "lat": 5.3650,
+      "lng": -4.0267
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "id": 6,
+        "user": "Yao Kouakou",
+        "rating": 4,
+        "comment": "Maison authentique avec une belle cour. Parfaite pour les grandes familles.",
+        "date": "2024-01-08",
+        "avatar": "YK"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Appartement neuf - Yopougon",
+    "location": "Yopougon, Abidjan",
+    "price": 250000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Appartement",
+    "status": "Disponible",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "area": 85,
+    "images": [
+      "https://i.ibb.co/Xf3WWcmz/5931379510161296296-120.jpg",
+      "https://i.ibb.co/s9Fw8zYT/5931379510161296295-120.jpg",
+      "https://i.ibb.co/WNDKDV12/5931379510161296294-120.jpg",
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg"
+    ],
+    "description": "Tout nouvel appartement dans une résidence moderne de Yopougon. Ce logement flambant neuf offre 2 chambres lumineuses, une salle de bain contemporaine, un séjour spacieux et une cuisine équipée. L'immeuble dispose d'équipements modernes et d'une sécurité optimale. Parfait pour un couple ou une petite famille recherchant le confort et la modernité à prix accessible.",
+    "amenities": [
+      "Neuf",
+      "Résidence sécurisée",
+      "Parking assigné",
+      "Cuisine équipée",
+      "Climatisation",
+      "Eau chaude",
+      "Internet prévu",
+      "Balcon",
+      "Gardiennage",
+      "Proche commodités"
+    ],
+    "contact": {
+      "owner": "Esso Kouame",
+      "phone": "+225 06 07 08 09 10",
+      "email": "esso.kouame@email.com"
+    },
+    "coordinates": {
+      "lat": 5.3456,
+      "lng": -4.0758
+    },
+    "rating": 4.7,
+    "reviews": [
+      {
+        "id": 7,
+        "user": "Aya Bamba",
+        "rating": 5,
+        "comment": "Appartement flambant neuf, très propre et bien équipé. Résidence sécurisée, je recommande !",
+        "date": "2024-01-22",
+        "avatar": "AB"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Villa avec jardin - Bingerville",
+    "location": "Bingerville, Abidjan",
+    "price": 600000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Villa",
+    "status": "Disponible",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "area": 220,
+    "images": [
+      "https://i.ibb.co/s9Fw8zYT/5931379510161296295-120.jpg",
+      "https://i.ibb.co/WNDKDV12/5931379510161296294-120.jpg",
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg",
+      "https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg"
+    ],
+    "description": "Splendide villa avec grand jardin dans le calme quartier résidentiel de Bingerville. Cette demeure familiale offre 4 chambres confortables, 3 salles de bain, de beaux espaces de réception et une cuisine spacieuse. Le grand jardin arboré et l'espace de détente extérieur en font un havre de paix. Idéale pour une famille aimant la tranquillité tout en restant proche de la ville.",
+    "amenities": [
+      "Grand jardin",
+      "Terrasse couverte",
+      "Parking multiple",
+      "Cuisine spacieuse",
+      "Climatisation",
+      "Cheminée",
+      "Quartier calme",
+      "Sécurité privée",
+      "Buanderie",
+      "Cave"
+    ],
+    "contact": {
+      "owner": "Sylvie Ouattara",
+      "phone": "+225 02 03 04 05 06",
+      "email": "sylvie.ouattara@email.com"
+    },
+    "coordinates": {
+      "lat": 5.4089,
+      "lng": -3.9000
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "id": 8,
+        "user": "Paul Diabaté",
+        "rating": 4,
+        "comment": "Villa magnifique avec un jardin superbe. Très calme, parfait pour se ressourcer.",
+        "date": "2024-01-16",
+        "avatar": "PD"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Loft moderne - Zone 4",
+    "location": "Zone 4, Abidjan",
+    "price": 380000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Loft",
+    "status": "Disponible",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "area": 95,
+    "images": [
+      "https://i.ibb.co/WNDKDV12/5931379510161296294-120.jpg",
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg",
+      "https://i.ibb.co/gZZJM44d/5931379510161296297-120.jpg",
+      "https://i.ibb.co/Xf3WWcmz/5931379510161296296-120.jpg"
+    ],
+    "description": "Loft contemporain au design industriel dans le quartier moderne de Zone 4. Cet espace ouvert au style unique combine chambre, salon et cuisine dans un concept moderne et épuré. Les hauts plafonds et les grandes baies vitrées créent une sensation d'espace et de luminosité exceptionnelle. Parfait pour un professionnel créatif ou un couple moderne appréciant les espaces atypiques.",
+    "amenities": [
+      "Design industriel",
+      "Hauts plafonds",
+      "Grandes baies vitrées",
+      "Espace ouvert",
+      "Cuisine américaine",
+      "Climatisation",
+      "Parking sécurisé",
+      "Ascenseur",
+      "Internet fibre",
+      "Quartier moderne"
+    ],
+    "contact": {
+      "owner": "David Kacou",
+      "phone": "+225 08 09 10 11 12",
+      "email": "david.kacou@email.com"
+    },
+    "coordinates": {
+      "lat": 5.3456,
+      "lng": -4.0083
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "id": 9,
+        "user": "Laura Assi",
+        "rating": 4,
+        "comment": "Loft très moderne avec beaucoup de caractère. L'espace ouvert est très agréable.",
+        "date": "2024-01-14",
+        "avatar": "LA"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Penthouse luxe - Cocody",
+    "location": "Cocody, Abidjan",
+    "price": 1200000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Penthouse",
+    "status": "Disponible",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "area": 200,
+    "images": [
+      "https://i.ibb.co/Y4JQ3ND1/5931379510161296293-120.jpg",
+      "https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg",
+      "https://i.ibb.co/QxvCPZv/5931379510161296298-120.jpg",
+      "https://i.ibb.co/gZZJM44d/5931379510161296297-120.jpg"
+    ],
+    "description": "Penthouse d'exception avec vue panoramique sur Abidjan, situé au sommet d'un immeuble de prestige à Cocody. Cet appartement de luxe dispose de 3 suites, d'espaces de réception somptueux et d'une terrasse privative avec jacuzzi. Les finitions haut de gamme et l'ameublement designer créent une atmosphère unique. Destiné à une clientèle exigeante recherchant l'excellence et l'exclusivité.",
+    "amenities": [
+      "Vue panoramique",
+      "Terrasse privée",
+      "Jacuzzi",
+      "3 suites",
+      "Cuisine de chef",
+      "Domotique",
+      "Ascenseur privé",
+      "Parking VIP",
+      "Concierge 24h",
+      "Salle de sport privée"
+    ],
+    "contact": {
+      "owner": "Michel Gbagbo",
+      "phone": "+225 01 12 23 34 45",
+      "email": "michel.gbagbo@email.com"
+    },
+    "coordinates": {
+      "lat": 5.3600,
+      "lng": -4.0083
+    },
+    "rating": 4.9,
+    "reviews": [
+      {
+        "id": 10,
+        "user": "Sophie Bédié",
+        "rating": 5,
+        "comment": "Penthouse absolument magnifique ! Vue époustouflante et prestations de très haut niveau.",
+        "date": "2024-01-25",
+        "avatar": "SB"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Maison familiale - Anyama",
+    "location": "Anyama, Abidjan",
+    "price": 200000,
+    "currency": "FCFA",
+    "period": "mois",
+    "type": "Maison",
+    "status": "Disponible",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 130,
+    "images": [
+      "https://i.ibb.co/gZZJM44d/5931379510161296297-120.jpg",
+      "https://i.ibb.co/Xf3WWcmz/5931379510161296296-120.jpg",
+      "https://i.ibb.co/s9Fw8zYT/5931379510161296295-120.jpg",
+      "https://i.ibb.co/WNDKDV12/5931379510161296294-120.jpg"
+    ],
+    "description": "Charmante maison familiale dans le quartier paisible d'Anyama. Cette propriété conviviale offre 3 chambres, 2 salles d'eau, un salon accueillant et une cuisine pratique. La cour spacieuse permet aux enfants de jouer en sécurité. Située dans un quartier résidentiel calme avec de bonnes écoles à proximité. Idéale pour une famille recherchant un cadre de vie abordable et tranquille.",
+    "amenities": [
+      "Cour spacieuse",
+      "Quartier familial",
+      "Proche écoles",
+      "Parking",
+      "Cuisine aménagée",
+      "Ventilation naturelle",
+      "Jardin",
+      "Puits",
+      "Sécurité quartier",
+      "Transport accessible"
+    ],
+    "contact": {
+      "owner": "Aminata Touré",
+      "phone": "+225 04 05 06 07 08",
+      "email": "aminata.toure@email.com"
+    },
+    "coordinates": {
+      "lat": 5.4931,
+      "lng": -4.0508
+    },
+    "rating": 4.2,
+    "reviews": [
+      {
+        "id": 11,
+        "user": "Ibrahim Coulibaly",
+        "rating": 4,
+        "comment": "Maison parfaite pour une famille avec enfants. Quartier calme et sécurisé.",
+        "date": "2024-01-11",
+        "avatar": "IC"
+      }
+    ]
+  }
+]

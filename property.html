@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la propriété - LOCAYA</title>
+    <meta name="description" content="Découvrez tous les détails de ce logement à Abidjan.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="flex-between">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    LOCAYA
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <a href="login.html" class="btn btn-outline">Se connecter</a>
+                        <a href="signup.html" class="btn btn-primary">S'inscrire</a>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Property Header -->
+    <div class="property-header">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loadingProperty" style="text-align: center; padding: var(--spacing-12);">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: var(--spacing-4); color: var(--gray-600);">
+                    Chargement des détails...
+                </p>
+            </div>
+
+            <!-- Property Not Found -->
+            <div id="propertyNotFound" style="display: none; text-align: center; padding: var(--spacing-12);">
+                <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">🏠</div>
+                <h2 style="margin-bottom: var(--spacing-4);">Logement non trouvé</h2>
+                <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
+                    Ce logement n'existe pas ou a été supprimé.
+                </p>
+                <div style="display: flex; gap: var(--spacing-3); justify-content: center; flex-wrap: wrap;">
+                    <a href="search.html" class="btn btn-primary">Voir d'autres logements</a>
+                    <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+                </div>
+            </div>
+
+            <!-- Property Details -->
+            <div id="propertyDetails" style="display: none;">
+                <!-- Breadcrumb -->
+                <div style="margin-bottom: var(--spacing-6); color: var(--gray-600); font-size: var(--font-size-sm);">
+                    <a href="index.html" style="color: var(--gray-600);">Accueil</a> 
+                    <span style="margin: 0 var(--spacing-2);">></span>
+                    <a href="search.html" style="color: var(--gray-600);">Rechercher</a>
+                    <span style="margin: 0 var(--spacing-2);">></span>
+                    <span id="breadcrumbLocation">Détails</span>
+                </div>
+
+                <!-- Property Gallery -->
+                <div class="property-gallery" id="propertyGallery">
+                    <!-- Gallery will be populated by JavaScript -->
+                </div>
+
+                <!-- Property Actions Bar -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin: var(--spacing-6) 0; flex-wrap: wrap; gap: var(--spacing-4);">
+                    <div style="display: flex; gap: var(--spacing-3); align-items: center;">
+                        <button id="favoriteBtn" class="btn btn-outline" onclick="togglePropertyFavorite()">
+                            ❤️ Ajouter aux favoris
+                        </button>
+                        <button class="btn btn-outline" onclick="shareProperty()">
+                            📤 Partager
+                        </button>
+                    </div>
+                    
+                    <div style="display: flex; gap: var(--spacing-2); align-items: center;">
+                        <button class="btn btn-outline btn-sm" onclick="previousProperty()">
+                            ← Précédent
+                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="nextProperty()">
+                            Suivant →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property Content -->
+    <main style="padding: var(--spacing-8) 0; background: var(--gray-50);">
+        <div class="container">
+            <div id="propertyContent" style="display: none;">
+                <div class="property-info">
+                    <!-- Left Column: Details -->
+                    <div class="property-details">
+                        <!-- Title and Location -->
+                        <div style="margin-bottom: var(--spacing-8);">
+                            <h1 id="propertyTitle">Titre du logement</h1>
+                            <div class="property-location" id="propertyLocation">
+                                📍 Localisation
+                            </div>
+                            <div class="property-features" id="propertyFeatures">
+                                <!-- Features will be populated -->
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="property-description">
+                            <h2 style="margin-bottom: var(--spacing-4);">Description</h2>
+                            <div id="propertyDescription">
+                                <p>Description du logement...</p>
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div class="property-amenities">
+                            <h2 style="margin-bottom: var(--spacing-4);">Équipements et services</h2>
+                            <ul class="amenities-list" id="propertyAmenities">
+                                <!-- Amenities will be populated -->
+                            </ul>
+                        </div>
+
+                        <!-- Location Map -->
+                        <div style="margin-bottom: var(--spacing-8);">
+                            <h2 style="margin-bottom: var(--spacing-4);">Localisation</h2>
+                            <div style="width: 100%; height: 300px; background: var(--gray-200); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--gray-600);">
+                                🗺️ Carte interactive (à venir)
+                                <div id="propertyCoordinates" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Sidebar -->
+                    <div class="property-sidebar">
+                        <!-- Price and Contact -->
+                        <div class="sidebar-price">
+                            <div class="amount" id="propertyPrice">0 FCFA</div>
+                            <div class="period" id="propertyPeriod">par mois</div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <form class="contact-form" id="propertyContactForm">
+                            <h3 style="margin-bottom: var(--spacing-4); color: var(--gray-900);">
+                                Contacter le propriétaire
+                            </h3>
+                            
+                            <div class="form-group">
+                                <input type="text" name="name" required placeholder=" ">
+                                <label>Votre nom</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" name="email" required placeholder=" ">
+                                <label>Votre email</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="tel" name="phone" required placeholder=" ">
+                                <label>Votre téléphone</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea name="message" rows="4" required placeholder=" ">Bonjour, je suis intéressé(e) par votre logement. Pouvons-nous convenir d'une visite ?</textarea>
+                                <label style="top: var(--spacing-4);">Message</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-danger btn-lg" style="width: 100%;">
+                                📞 Envoyer le message
+                            </button>
+                        </form>
+
+                        <!-- Owner Info -->
+                        <div id="ownerInfo" style="margin-top: var(--spacing-6); padding: var(--spacing-4); background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200);">
+                            <h4 style="margin-bottom: var(--spacing-3);">Propriétaire</h4>
+                            <div id="ownerDetails">
+                                <!-- Owner details will be populated -->
+                            </div>
+                        </div>
+
+                        <!-- Property Stats -->
+                        <div style="margin-top: var(--spacing-6); padding: var(--spacing-4); background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200);">
+                            <h4 style="margin-bottom: var(--spacing-3);">Statistiques</h4>
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-3);">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--gray-600);">Type:</span>
+                                    <span id="propertyType">-</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--gray-600);">Surface:</span>
+                                    <span id="propertyArea">-</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--gray-600);">Note:</span>
+                                    <span id="propertyRating">-</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--gray-600);">Statut:</span>
+                                    <span id="propertyStatus" class="property-badge" style="position: static; background: var(--primary-violet);">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Reviews Section -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <div id="reviewsSection" style="display: none;">
+                <div class="reviews-section">
+                    <div class="reviews-header">
+                        <div>
+                            <h2>Avis des locataires</h2>
+                            <div class="reviews-stats" id="reviewsStats">
+                                <!-- Stats will be populated -->
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <button id="addReviewBtn" class="btn btn-primary" onclick="openReviewModal()">
+                                ✍️ Laisser un avis
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-list" id="reviewsList">
+                        <!-- Reviews will be populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Properties -->
+    <section class="section" style="background: var(--gray-50);">
+        <div class="container">
+            <div id="similarSection" style="display: none;">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-8);">
+                    Logements similaires
+                </h2>
+                <div class="grid grid-3" id="similarProperties">
+                    <!-- Similar properties will be populated -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Lightbox Modal -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content" style="max-width: 90vw; max-height: 90vh; padding: 0; background: var(--black);">
+            <div class="modal-header" style="background: rgba(0,0,0,0.8); color: white; margin: 0;">
+                <h3 id="galleryTitle">Galerie photo</h3>
+                <button class="modal-close" onclick="closeModal('galleryModal')" style="color: white; background: rgba(255,255,255,0.1);">&times;</button>
+            </div>
+            
+            <div style="position: relative; text-align: center;">
+                <img id="galleryImage" src="" alt="" style="max-width: 100%; max-height: 70vh; object-fit: contain;">
+                
+                <button id="prevGalleryBtn" onclick="previousGalleryImage()" 
+                        style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: white; border: none; padding: var(--spacing-3); border-radius: var(--radius-full); cursor: pointer; font-size: var(--font-size-xl);">
+                    ‹
+                </button>
+                
+                <button id="nextGalleryBtn" onclick="nextGalleryImage()" 
+                        style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: white; border: none; padding: var(--spacing-3); border-radius: var(--radius-full); cursor: pointer; font-size: var(--font-size-xl);">
+                    ›
+                </button>
+                
+                <div style="padding: var(--spacing-4); background: rgba(0,0,0,0.8); color: white;">
+                    <div id="galleryInfo">Image 1 sur 5</div>
+                    <div id="galleryThumbnails" style="display: flex; gap: var(--spacing-2); justify-content: center; margin-top: var(--spacing-3); flex-wrap: wrap;">
+                        <!-- Thumbnails will be populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Laisser un avis</h3>
+                <button class="modal-close" onclick="closeModal('reviewModal')">&times;</button>
+            </div>
+            
+            <form id="reviewForm">
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                    <div>
+                        <label style="display: block; margin-bottom: var(--spacing-2); font-weight: var(--font-weight-medium);">
+                            Note sur 5:
+                        </label>
+                        <div id="ratingStars" style="display: flex; gap: var(--spacing-1); font-size: var(--font-size-2xl);">
+                            <span class="rating-star" data-rating="1">☆</span>
+                            <span class="rating-star" data-rating="2">☆</span>
+                            <span class="rating-star" data-rating="3">☆</span>
+                            <span class="rating-star" data-rating="4">☆</span>
+                            <span class="rating-star" data-rating="5">☆</span>
+                        </div>
+                        <input type="hidden" name="rating" id="reviewRating" value="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="comment" rows="4" required placeholder=" " style="resize: vertical;"></textarea>
+                        <label style="top: var(--spacing-4);">Votre commentaire</label>
+                    </div>
+                    
+                    <div style="display: flex; gap: var(--spacing-3);">
+                        <button type="button" onclick="closeModal('reviewModal')" class="btn btn-outline">
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Publier l'avis
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Partager ce logement</h3>
+                <button class="modal-close" onclick="closeModal('shareModal')">&times;</button>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                <div style="display: flex; gap: var(--spacing-3); justify-content: center; flex-wrap: wrap;">
+                    <button onclick="shareVia('whatsapp')" class="btn btn-outline">
+                        💬 WhatsApp
+                    </button>
+                    <button onclick="shareVia('facebook')" class="btn btn-outline">
+                        📘 Facebook
+                    </button>
+                    <button onclick="shareVia('email')" class="btn btn-outline">
+                        ✉️ Email
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="shareUrl" readonly placeholder=" ">
+                    <label>Lien à partager</label>
+                </div>
+                
+                <button onclick="copyShareUrl()" class="btn btn-primary">
+                    📋 Copier le lien
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <ul class="bottom-nav-items">
+            <li class="bottom-nav-item">
+                <a href="index.html">
+                    <span class="icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="search.html">
+                    <span class="icon">🔍</span>
+                    <span>Recherche</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="dashboard.html">
+                    <span class="icon">❤️</span>
+                    <span>Favoris</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="dashboard.html">
+                    <span class="icon">👤</span>
+                    <span>Profil</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/property.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - LOCAYA</title>
+    <meta name="description" content="Gérez vos favoris, recherches et profil sur votre espace personnel LOCAYA.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="flex-between">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    LOCAYA
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <div class="user-profile-header" id="userProfileHeader">
+                            <span id="userWelcome">Bonjour !</span>
+                            <button onclick="logout()" class="btn btn-outline btn-sm">Déconnexion</button>
+                        </div>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Welcome Banner -->
+        <div id="welcomeBanner" class="welcome-banner" style="display: none; background: var(--gradient-primary); color: white; text-align: center; padding: var(--spacing-8); margin-bottom: var(--spacing-6);">
+            <div class="container">
+                <h1 style="margin-bottom: var(--spacing-4); font-size: var(--font-size-3xl);">🎉 Bienvenue sur LOCAYA !</h1>
+                <p style="font-size: var(--font-size-lg); opacity: 0.9; margin-bottom: var(--spacing-6);">
+                    Votre compte a été créé avec succès. Découvrez toutes les fonctionnalités de votre espace personnel.
+                </p>
+                <button onclick="hideWelcomeBanner()" class="btn btn-secondary">
+                    Continuer
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-4);">
+                    <div>
+                        <h1 id="dashboardTitle" style="margin-bottom: var(--spacing-2);">Tableau de bord</h1>
+                        <p id="dashboardSubtitle" style="color: var(--gray-600);">Gérez vos favoris et votre profil</p>
+                    </div>
+                    
+                    <div style="display: flex; gap: var(--spacing-3); align-items: center;">
+                        <a href="search.html" class="btn btn-primary">
+                            🔍 Rechercher un logement
+                        </a>
+                        <button id="notificationsBtn" class="btn btn-outline" onclick="toggleNotifications()">
+                            🔔 <span id="notificationCount" class="notification-badge" style="display: none;">0</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navigation Tabs -->
+                <div class="dashboard-nav">
+                    <button class="active" data-tab="overview" onclick="switchTab('overview')">📊 Vue d'ensemble</button>
+                    <button data-tab="favorites" onclick="switchTab('favorites')">❤️ Favoris</button>
+                    <button data-tab="searches" onclick="switchTab('searches')">🔍 Recherches</button>
+                    <button data-tab="messages" onclick="switchTab('messages')">💬 Messages</button>
+                    <button data-tab="profile" onclick="switchTab('profile')">👤 Profil</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="container">
+                <!-- Overview Tab -->
+                <div id="overview-tab" class="tab-content active">
+                    <!-- Stats Cards -->
+                    <div class="dashboard-stats">
+                        <div class="stat-card animate-on-scroll">
+                            <div class="stat-number" id="favoritesCount">0</div>
+                            <div class="stat-label">Favoris</div>
+                            <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">❤️</div>
+                        </div>
+                        
+                        <div class="stat-card animate-on-scroll" style="animation-delay: 0.1s;">
+                            <div class="stat-number" id="searchesCount">0</div>
+                            <div class="stat-label">Recherches</div>
+                            <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">🔍</div>
+                        </div>
+                        
+                        <div class="stat-card animate-on-scroll" style="animation-delay: 0.2s;">
+                            <div class="stat-number" id="messagesCount">0</div>
+                            <div class="stat-label">Messages</div>
+                            <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">💬</div>
+                        </div>
+                        
+                        <div class="stat-card animate-on-scroll" style="animation-delay: 0.3s;">
+                            <div class="stat-number" id="daysActive">0</div>
+                            <div class="stat-label">Jours d'activité</div>
+                            <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">📅</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="card animate-on-scroll" style="margin: var(--spacing-8) 0;">
+                        <h2 style="margin-bottom: var(--spacing-6);">Actions rapides</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-4);">
+                            <a href="search.html" class="quick-action-card">
+                                <div class="quick-action-icon">🔍</div>
+                                <h3>Rechercher un logement</h3>
+                                <p>Trouvez votre futur chez-vous parmi nos offres</p>
+                            </a>
+                            
+                            <button onclick="switchTab('favorites')" class="quick-action-card">
+                                <div class="quick-action-icon">❤️</div>
+                                <h3>Mes favoris</h3>
+                                <p>Consultez vos logements sauvegardés</p>
+                            </button>
+                            
+                            <button onclick="switchTab('messages')" class="quick-action-card">
+                                <div class="quick-action-icon">💬</div>
+                                <h3>Mes messages</h3>
+                                <p>Échangez avec les propriétaires</p>
+                            </button>
+                            
+                            <button onclick="switchTab('profile')" class="quick-action-card">
+                                <div class="quick-action-icon">⚙️</div>
+                                <h3>Paramètres</h3>
+                                <p>Gérez votre profil et préférences</p>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="card animate-on-scroll">
+                        <h2 style="margin-bottom: var(--spacing-6);">Activité récente</h2>
+                        <div id="recentActivity">
+                            <div style="text-align: center; color: var(--gray-600); padding: var(--spacing-8);">
+                                <div style="font-size: 3rem; margin-bottom: var(--spacing-4); opacity: 0.5;">📊</div>
+                                <p>Votre activité apparaîtra ici</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Favorites Tab -->
+                <div id="favorites-tab" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6); flex-wrap: wrap; gap: var(--spacing-4);">
+                        <div>
+                            <h2>Mes favoris</h2>
+                            <p style="color: var(--gray-600); margin-top: var(--spacing-2);">
+                                Logements que vous avez sauvegardés
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: var(--spacing-3); align-items: center;">
+                            <select id="favoritesSort" onchange="sortFavorites()" style="padding: var(--spacing-2); border: 1px solid var(--gray-300); border-radius: var(--radius-sm);">
+                                <option value="recent">Plus récents</option>
+                                <option value="price-asc">Prix croissant</option>
+                                <option value="price-desc">Prix décroissant</option>
+                                <option value="rating">Mieux notés</option>
+                            </select>
+                            <button onclick="clearAllFavorites()" class="btn btn-outline btn-sm">
+                                🗑️ Tout supprimer
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="favoritesList" class="grid grid-3">
+                        <!-- Favorites will be loaded here -->
+                    </div>
+                    
+                    <div id="noFavorites" style="display: none; text-align: center; padding: var(--spacing-12);">
+                        <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">❤️</div>
+                        <h3 style="margin-bottom: var(--spacing-4);">Aucun favori pour le moment</h3>
+                        <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
+                            Parcourez nos logements et cliquez sur ❤️ pour les sauvegarder ici
+                        </p>
+                        <a href="search.html" class="btn btn-primary">
+                            Découvrir les logements
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Searches Tab -->
+                <div id="searches-tab" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6); flex-wrap: wrap; gap: var(--spacing-4);">
+                        <div>
+                            <h2>Historique des recherches</h2>
+                            <p style="color: var(--gray-600); margin-top: var(--spacing-2);">
+                                Retrouvez vos recherches précédentes
+                            </p>
+                        </div>
+                        <button onclick="clearSearchHistory()" class="btn btn-outline btn-sm">
+                            🗑️ Effacer l'historique
+                        </button>
+                    </div>
+                    
+                    <div id="searchHistory">
+                        <!-- Search history will be loaded here -->
+                    </div>
+                    
+                    <div id="noSearches" style="display: none; text-align: center; padding: var(--spacing-12);">
+                        <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">🔍</div>
+                        <h3 style="margin-bottom: var(--spacing-4);">Aucune recherche enregistrée</h3>
+                        <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
+                            Vos recherches apparaîtront ici pour un accès rapide
+                        </p>
+                        <a href="search.html" class="btn btn-primary">
+                            Faire une recherche
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Messages Tab -->
+                <div id="messages-tab" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6); flex-wrap: wrap; gap: var(--spacing-4);">
+                        <div>
+                            <h2>Messages</h2>
+                            <p style="color: var(--gray-600); margin-top: var(--spacing-2);">
+                                Conversations avec les propriétaires
+                            </p>
+                        </div>
+                        <button onclick="markAllRead()" class="btn btn-outline btn-sm">
+                            ✅ Tout marquer lu
+                        </button>
+                    </div>
+                    
+                    <div id="messagesList">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                    
+                    <div id="noMessages" style="display: none; text-align: center; padding: var(--spacing-12);">
+                        <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">💬</div>
+                        <h3 style="margin-bottom: var(--spacing-4);">Aucun message</h3>
+                        <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
+                            Contactez des propriétaires pour voir vos conversations ici
+                        </p>
+                        <a href="search.html" class="btn btn-primary">
+                            Parcourir les logements
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div id="profile-tab" class="tab-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-8); align-items: start;">
+                        <!-- Profile Info -->
+                        <div class="card">
+                            <h2 style="margin-bottom: var(--spacing-6);">Informations personnelles</h2>
+                            
+                            <form id="profileForm">
+                                <div style="text-align: center; margin-bottom: var(--spacing-6);">
+                                    <div id="profileAvatar" class="profile-avatar">
+                                        <!-- Avatar will be generated -->
+                                    </div>
+                                    <button type="button" onclick="changeAvatar()" class="btn btn-outline btn-sm" style="margin-top: var(--spacing-3);">
+                                        📷 Changer l'avatar
+                                    </button>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" id="profileName" name="name" required placeholder=" ">
+                                    <label for="profileName">Nom complet</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="email" id="profileEmail" name="email" required placeholder=" " readonly>
+                                    <label for="profileEmail">Email</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="tel" id="profilePhone" name="phone" placeholder=" ">
+                                    <label for="profilePhone">Téléphone</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <select id="profileAccountType" name="accountType" disabled>
+                                        <option value="user">🏠 Je cherche un logement</option>
+                                        <option value="owner">🏘️ Je loue des logements</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                    💾 Sauvegarder les modifications
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Account Settings -->
+                        <div class="card">
+                            <h2 style="margin-bottom: var(--spacing-6);">Paramètres du compte</h2>
+                            
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-4); background: var(--gray-50); border-radius: var(--radius-lg);">
+                                    <div>
+                                        <h4>Notifications par email</h4>
+                                        <p style="color: var(--gray-600); font-size: var(--font-size-sm);">Recevoir les actualités LOCAYA</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="emailNotifications" onchange="toggleEmailNotifications()">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-4); background: var(--gray-50); border-radius: var(--radius-lg);">
+                                    <div>
+                                        <h4>Mode sombre</h4>
+                                        <p style="color: var(--gray-600); font-size: var(--font-size-sm);">Interface en thème sombre</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="darkMode" onchange="toggleDarkMode()">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-4); background: var(--gray-50); border-radius: var(--radius-lg);">
+                                    <div>
+                                        <h4>Recherches sauvegardées</h4>
+                                        <p style="color: var(--gray-600); font-size: var(--font-size-sm);">Garder l'historique des recherches</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="saveSearches" onchange="toggleSaveSearches()" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <hr style="margin: var(--spacing-6) 0;">
+                            
+                            <div>
+                                <h3 style="margin-bottom: var(--spacing-4); color: var(--gray-700);">Zone de danger</h3>
+                                
+                                <button onclick="changePassword()" class="btn btn-outline" style="width: 100%; margin-bottom: var(--spacing-3);">
+                                    🔐 Changer le mot de passe
+                                </button>
+                                
+                                <button onclick="deleteAccount()" class="btn btn-danger" style="width: 100%;">
+                                    🗑️ Supprimer le compte
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel" class="notifications-panel">
+        <div class="notifications-header">
+            <h3>Notifications</h3>
+            <button onclick="closeNotifications()" class="btn btn-outline btn-sm">✕</button>
+        </div>
+        <div id="notificationsList">
+            <!-- Notifications will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <ul class="bottom-nav-items">
+            <li class="bottom-nav-item">
+                <a href="index.html">
+                    <span class="icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="search.html">
+                    <span class="icon">🔍</span>
+                    <span>Recherche</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="#" class="active">
+                    <span class="icon">❤️</span>
+                    <span>Favoris</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="#" class="active">
+                    <span class="icon">👤</span>
+                    <span>Profil</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

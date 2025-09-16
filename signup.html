@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - LOCAYA</title>
+    <meta name="description" content="Créez votre compte LOCAYA et trouvez le logement de vos rêves à Abidjan.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="flex-between">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    LOCAYA
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <a href="login.html" class="btn btn-outline">Se connecter</a>
+                        <a href="#" class="btn btn-primary active">S'inscrire</a>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-card animate-on-scroll scale-in">
+            <div class="auth-header">
+                <h1 class="auth-title">Rejoignez LOCAYA</h1>
+                <p class="auth-subtitle">Créez votre compte pour accéder à toutes nos fonctionnalités</p>
+            </div>
+            
+            <form class="auth-form" id="signupForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4);">
+                    <div class="form-group">
+                        <input type="text" id="firstName" name="firstName" required placeholder=" " autocomplete="given-name">
+                        <label for="firstName">Prénom</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="lastName" name="lastName" required placeholder=" " autocomplete="family-name">
+                        <label for="lastName">Nom</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
+                    <label for="email">Email</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder=" " autocomplete="tel">
+                    <label for="phone">Téléphone (optionnel)</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" name="password" required placeholder=" " 
+                           autocomplete="new-password" minlength="6">
+                    <label for="password">Mot de passe</label>
+                    <button type="button" class="password-toggle" id="togglePassword" 
+                            style="position: absolute; right: var(--spacing-4); top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: var(--font-size-lg);">
+                        👁️
+                    </button>
+                </div>
+                
+                <!-- Password Strength Indicator -->
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                </div>
+                <div id="passwordStrengthText" style="font-size: var(--font-size-sm); color: var(--gray-600); margin-bottom: var(--spacing-4);">
+                    Votre mot de passe doit contenir au moins 6 caractères
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" " 
+                           autocomplete="new-password">
+                    <label for="confirmPassword">Confirmer le mot de passe</label>
+                    <div id="passwordMatchError" style="display: none; color: var(--accent-red); font-size: var(--font-size-sm); margin-top: var(--spacing-2);">
+                        Les mots de passe ne correspondent pas
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <select id="accountType" name="accountType" required>
+                        <option value="">Choisir le type de compte</option>
+                        <option value="user">🏠 Je cherche un logement</option>
+                        <option value="owner">🏘️ Je loue des logements</option>
+                    </select>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-5);">
+                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-3); cursor: pointer;">
+                        <input type="checkbox" id="acceptTerms" name="acceptTerms" required 
+                               style="width: 18px; height: 18px; accent-color: var(--primary-violet); margin-top: 2px; flex-shrink: 0;">
+                        <span style="color: var(--gray-600); font-size: var(--font-size-sm); line-height: 1.4;">
+                            J'accepte les 
+                            <a href="#" onclick="showTerms()" style="color: var(--primary-violet);">conditions d'utilisation</a>
+                            et la 
+                            <a href="#" onclick="showPrivacy()" style="color: var(--primary-violet);">politique de confidentialité</a>
+                        </span>
+                    </label>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-5);">
+                    <label style="display: flex; align-items: center; gap: var(--spacing-3); cursor: pointer;">
+                        <input type="checkbox" id="newsletter" name="newsletter" 
+                               style="width: 18px; height: 18px; accent-color: var(--primary-violet);">
+                        <span style="color: var(--gray-600); font-size: var(--font-size-sm);">
+                            Je souhaite recevoir les actualités et offres LOCAYA
+                        </span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="signupBtn">
+                    🚀 Créer mon compte
+                </button>
+                
+                <div id="signupError" class="error-message" style="display: none; color: var(--accent-red); text-align: center; margin-top: var(--spacing-4); padding: var(--spacing-3); background: rgba(255, 0, 0, 0.1); border-radius: var(--radius-sm);">
+                </div>
+            </form>
+            
+            <div class="auth-divider">
+                <span>ou</span>
+            </div>
+            
+            <div style="display: flex; gap: var(--spacing-3); margin-bottom: var(--spacing-6);">
+                <button type="button" onclick="socialSignup('google')" class="btn btn-outline" style="flex: 1;">
+                    🔍 Google
+                </button>
+                <button type="button" onclick="socialSignup('facebook')" class="btn btn-outline" style="flex: 1;">
+                    📘 Facebook
+                </button>
+            </div>
+            
+            <div class="auth-footer">
+                <p style="color: var(--gray-600);">
+                    Déjà un compte ?
+                    <a href="login.html" style="color: var(--primary-violet); font-weight: var(--font-weight-medium);">
+                        Se connecter
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div style="text-align: center; padding: var(--spacing-6);">
+                <div style="font-size: 4rem; margin-bottom: var(--spacing-4);">🎉</div>
+                <h3 style="margin-bottom: var(--spacing-4); color: var(--primary-violet);">
+                    Compte créé avec succès !
+                </h3>
+                <p style="color: var(--gray-600); margin-bottom: var(--spacing-6); line-height: 1.6;">
+                    Bienvenue sur LOCAYA ! Votre compte a été créé et vous êtes maintenant connecté(e).
+                    Vous allez être redirigé(e) vers votre tableau de bord.
+                </p>
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        /**
+         * Module d'inscription
+         */
+        
+        let passwordStrength = 0;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('signupForm');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const togglePassword = document.getElementById('togglePassword');
+            
+            // Toggle password visibility
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        togglePassword.textContent = '🙈';
+                    } else {
+                        passwordInput.type = 'password';
+                        togglePassword.textContent = '👁️';
+                    }
+                });
+            }
+            
+            // Password strength checker
+            if (passwordInput) {
+                passwordInput.addEventListener('input', checkPasswordStrength);
+            }
+            
+            // Password match checker
+            if (confirmPasswordInput) {
+                confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+            }
+            
+            // Form submission
+            if (signupForm) {
+                signupForm.addEventListener('submit', handleSignup);
+            }
+        });
+        
+        /**
+         * Vérifie la force du mot de passe
+         */
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            // Critères de force
+            const hasLength = password.length >= 6;
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+            
+            let strength = 0;
+            let strengthClass = '';
+            let strengthMessage = '';
+            
+            if (hasLength) strength++;
+            if (hasLowerCase) strength++;
+            if (hasUpperCase) strength++;
+            if (hasNumbers) strength++;
+            if (hasSpecial) strength++;
+            
+            switch (strength) {
+                case 0:
+                case 1:
+                    strengthClass = 'strength-weak';
+                    strengthMessage = '🔴 Mot de passe faible';
+                    break;
+                case 2:
+                    strengthClass = 'strength-fair';
+                    strengthMessage = '🟠 Mot de passe moyen';
+                    break;
+                case 3:
+                case 4:
+                    strengthClass = 'strength-good';
+                    strengthMessage = '🟡 Mot de passe bon';
+                    break;
+                case 5:
+                    strengthClass = 'strength-strong';
+                    strengthMessage = '🟢 Mot de passe excellent';
+                    break;
+            }
+            
+            passwordStrength = strength;
+            strengthBar.className = `password-strength-bar ${strengthClass}`;
+            strengthText.textContent = password ? strengthMessage : 'Votre mot de passe doit contenir au moins 6 caractères';
+            strengthText.style.color = password ? (strength >= 3 ? 'var(--primary-violet)' : 'var(--accent-red)') : 'var(--gray-600)';
+        }
+        
+        /**
+         * Vérifie la correspondance des mots de passe
+         */
+        function checkPasswordMatch() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('passwordMatchError');
+            
+            if (confirmPassword && password !== confirmPassword) {
+                errorDiv.style.display = 'block';
+                return false;
+            } else {
+                errorDiv.style.display = 'none';
+                return true;
+            }
+        }
+        
+        /**
+         * Gère l'inscription
+         */
+        function handleSignup(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const signupBtn = document.getElementById('signupBtn');
+            const errorDiv = document.getElementById('signupError');
+            
+            // Validation des données
+            const email = formData.get('email').toLowerCase().trim();
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            const firstName = formData.get('firstName').trim();
+            const lastName = formData.get('lastName').trim();
+            const phone = formData.get('phone').trim();
+            const accountType = formData.get('accountType');
+            const acceptTerms = formData.get('acceptTerms');
+            
+            // Reset error
+            errorDiv.style.display = 'none';
+            
+            // Validations
+            if (!acceptTerms) {
+                showError('Vous devez accepter les conditions d\'utilisation');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('Les mots de passe ne correspondent pas');
+                return;
+            }
+            
+            if (passwordStrength < 2) {
+                showError('Votre mot de passe est trop faible');
+                return;
+            }
+            
+            // Vérifier si l'email existe déjà (simulation)
+            const existingUsers = ['user@locaya.ci', 'owner@locaya.ci'];
+            if (existingUsers.includes(email)) {
+                showError('Un compte existe déjà avec cette adresse email');
+                return;
+            }
+            
+            // Loading state
+            signupBtn.innerHTML = '<span class="spin">⏳</span> Création du compte...';
+            signupBtn.disabled = true;
+            
+            // Simulate signup delay
+            setTimeout(() => {
+                // Créer l'utilisateur
+                const userData = {
+                    id: Date.now(),
+                    name: `${firstName} ${lastName}`,
+                    email: email,
+                    phone: phone || null,
+                    avatar: `${firstName[0]}${lastName[0]}`,
+                    joinDate: new Date().toISOString().split('T')[0],
+                    accountType: accountType,
+                    newsletter: formData.get('newsletter') === 'on'
+                };
+                
+                // Sauvegarder l'utilisateur
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                
+                // Créer les structures de données pour le nouvel utilisateur
+                localStorage.setItem(`favorites_${userData.id}`, JSON.stringify([]));
+                localStorage.setItem(`messages_${userData.id}`, JSON.stringify([]));
+                localStorage.setItem(`searchHistory_${userData.id}`, JSON.stringify([]));
+                
+                // Afficher le modal de succès
+                showModal('successModal');
+                
+                // Redirection après délai
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html?welcome=true';
+                }, 3000);
+                
+            }, 2000);
+            
+            function showError(message) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                errorDiv.classList.add('shake');
+                
+                setTimeout(() => {
+                    errorDiv.classList.remove('shake');
+                }, 600);
+            }
+        }
+        
+        /**
+         * Inscription sociale (simulation)
+         */
+        function socialSignup(provider) {
+            showToast('Fonctionnalité prochainement', `Inscription via ${provider} bientôt disponible`, 'info');
+        }
+        
+        /**
+         * Affiche les conditions d'utilisation
+         */
+        function showTerms() {
+            showToast('Conditions d\'utilisation', 'Les CGU seront bientôt disponibles', 'info');
+        }
+        
+        /**
+         * Affiche la politique de confidentialité
+         */
+        function showPrivacy() {
+            showToast('Politique de confidentialité', 'La politique sera bientôt disponible', 'info');
+        }
+    </script>
+</body>
+</html>

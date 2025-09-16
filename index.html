@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCAYA - Location de logements à Abidjan</title>
+    <meta name="description" content="Trouvez votre logement idéal à Abidjan avec LOCAYA. Villas, appartements, studios - Location simple et sécurisée.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="LOCAYA - Location de logements à Abidjan">
+    <meta property="og:description" content="Plateforme moderne de location de logements à Abidjan">
+    <meta property="og:image" content="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg">
+    <meta property="og:url" content="#">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="flex-between">
+                <a href="#" class="logo">
+                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    LOCAYA
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="#" class="active">Accueil</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <a href="login.html" class="btn btn-outline">Se connecter</a>
+                        <a href="signup.html" class="btn btn-primary">S'inscrire</a>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        ☰
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="typewriter">Trouvez votre logement idéal à Abidjan</span>
+                </h1>
+                <p class="hero-subtitle">
+                    La plateforme moderne pour louer facilement votre prochain chez-vous. 
+                    Villas, appartements, studios - Tout est sur LOCAYA.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="search.html" class="btn btn-primary btn-lg">
+                        🔍 Rechercher un logement
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-lg">
+                        ✨ Découvrir LOCAYA
+                    </a>
+                </div>
+                
+                <!-- Quick Search -->
+                <div class="hero-search">
+                    <form class="search-form" id="quickSearchForm">
+                        <div class="form-group">
+                            <input type="text" id="location" name="location" placeholder=" " required>
+                            <label for="location">📍 Localisation</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="type" name="type">
+                                <option value="">Tous types</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Appartement">Appartement</option>
+                                <option value="Duplex">Duplex</option>
+                                <option value="Studio">Studio</option>
+                                <option value="Maison">Maison</option>
+                                <option value="Loft">Loft</option>
+                                <option value="Penthouse">Penthouse</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="priceRange" name="priceRange">
+                                <option value="">Budget</option>
+                                <option value="0-250000">Moins de 250k FCFA</option>
+                                <option value="250000-500000">250k - 500k FCFA</option>
+                                <option value="500000-800000">500k - 800k FCFA</option>
+                                <option value="800000+">Plus de 800k FCFA</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary pulse">
+                            Rechercher
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Pourquoi choisir LOCAYA ?</h2>
+                <p class="section-subtitle">
+                    Une plateforme moderne conçue pour faciliter votre recherche de logement à Abidjan
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Large sélection</h3>
+                    <p>Plus de 500+ logements disponibles dans tous les quartiers d'Abidjan. Villas, appartements, studios - Trouvez exactement ce que vous cherchez.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Recherche rapide</h3>
+                    <p>Notre système de filtrage intelligent vous permet de trouver votre logement idéal en quelques clics. Filtrez par prix, quartier, type et plus encore.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Sécurisé et fiable</h3>
+                    <p>Tous nos logements sont vérifiés. Propriétaires certifiés, photos authentiques et informations fiables pour une location en toute sécurité.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile-first</h3>
+                    <p>Recherchez, contactez et gérez vos favoris depuis votre smartphone. Interface optimisée pour une expérience mobile parfaite.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll" style="animation-delay: 0.5s;">
+                    <div class="feature-icon">💬</div>
+                    <h3>Contact direct</h3>
+                    <p>Contactez directement les propriétaires via notre messagerie intégrée. Négociation simple et transparente, sans intermédiaire.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll" style="animation-delay: 0.6s;">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Avis vérifiés</h3>
+                    <p>Consultez les avis d'anciens locataires pour faire le bon choix. Système de notation transparent et commentaires authentiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section" style="background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">LOCAYA en chiffres</h2>
+                <p class="section-subtitle">
+                    Notre plateforme grandit chaque jour grâce à votre confiance
+                </p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Logements disponibles</div>
+                </div>
+                
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="stat-number" data-count="120">0</div>
+                    <div class="stat-label">Propriétaires partenaires</div>
+                </div>
+                
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="stat-number" data-count="850">0</div>
+                    <div class="stat-label">Locations réussies</div>
+                </div>
+                
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">% de satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Properties -->
+    <section class="section" id="properties">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Logements populaires</h2>
+                <p class="section-subtitle">
+                    Découvrez nos logements les plus appréciés par nos utilisateurs
+                </p>
+            </div>
+            
+            <div class="grid grid-3" id="popularProperties">
+                <!-- Properties will be loaded by JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--spacing-12);">
+                <a href="search.html" class="btn btn-primary btn-lg">
+                    Voir tous les logements →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about" style="background: var(--gray-50);">
+        <div class="container">
+            <div class="grid-2" style="align-items: center; gap: var(--spacing-12);">
+                <div class="animate-on-scroll">
+                    <h2 style="margin-bottom: var(--spacing-6); font-size: var(--font-size-3xl);">
+                        Votre partenaire logement à Abidjan
+                    </h2>
+                    <p style="margin-bottom: var(--spacing-4); font-size: var(--font-size-lg); color: var(--gray-600);">
+                        LOCAYA révolutionne la recherche de logement à Abidjan en connectant directement locataires et propriétaires sur une plateforme moderne et sécurisée.
+                    </p>
+                    <p style="margin-bottom: var(--spacing-6); color: var(--gray-600);">
+                        Notre mission est simple : rendre la location de logement accessible, transparente et efficace pour tous. Que vous cherchiez une villa à Cocody, un appartement au Plateau ou un studio à Treichville, nous vous accompagnons dans votre recherche.
+                    </p>
+                    <div style="display: flex; gap: var(--spacing-4); flex-wrap: wrap;">
+                        <a href="search.html" class="btn btn-primary">Commencer ma recherche</a>
+                        <a href="#contact" class="btn btn-outline">Nous contacter</a>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                    <img src="https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg" 
+                         alt="Logement moderne à Abidjan" 
+                         style="width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Contactez-nous</h2>
+                <p class="section-subtitle">
+                    Notre équipe est là pour vous accompagner dans votre recherche de logement
+                </p>
+            </div>
+            
+            <div class="grid-2" style="gap: var(--spacing-12);">
+                <div class="animate-on-scroll">
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-6);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--font-size-lg);">
+                                📍
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: var(--spacing-1);">Adresse</h4>
+                                <p style="color: var(--gray-600); margin: 0;">Plateau, Abidjan, Côte d'Ivoire</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--font-size-lg);">
+                                📞
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: var(--spacing-1);">Téléphone</h4>
+                                <p style="color: var(--gray-600); margin: 0;">+225 27 20 00 00 00</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: var(--spacing-4);">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--font-size-lg);">
+                                ✉️
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: var(--spacing-1);">Email</h4>
+                                <p style="color: var(--gray-600); margin: 0;">contact@locaya.ci</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card animate-on-scroll" style="animation-delay: 0.2s;">
+                    <form id="contactForm">
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name">Nom complet</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email">Email</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder=" ">
+                                <label for="phone">Téléphone</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+                                <label for="message" style="top: var(--spacing-4);">Message</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Envoyer le message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="color: var(--white); margin-bottom: var(--spacing-4);">
+                        <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                        LOCAYA
+                    </div>
+                    <p style="color: var(--gray-300); margin-bottom: var(--spacing-4);">
+                        La plateforme moderne de location de logements à Abidjan. 
+                        Trouvez votre chez-vous facilement et en toute sécurité.
+                    </p>
+                    <div style="display: flex; gap: var(--spacing-3);">
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">📘</a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">📷</a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">🐦</a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">💼</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <a href="#">Accueil</a>
+                    <a href="search.html">Rechercher</a>
+                    <a href="#about">À propos</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Location</a>
+                    <a href="#">Vente</a>
+                    <a href="#">Estimation</a>
+                    <a href="#">Gestion locative</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quartiers</h3>
+                    <a href="#">Cocody</a>
+                    <a href="#">Plateau</a>
+                    <a href="#">Marcory</a>
+                    <a href="#">Yopougon</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p style="color: var(--gray-300);">📍 Plateau, Abidjan</p>
+                    <p style="color: var(--gray-300);">📞 +225 27 20 00 00 00</p>
+                    <p style="color: var(--gray-300);">✉️ contact@locaya.ci</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LOCAYA. Tous droits réservés. Développé avec ❤️ pour Abidjan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <ul class="bottom-nav-items">
+            <li class="bottom-nav-item">
+                <a href="#" class="active">
+                    <span class="icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="search.html">
+                    <span class="icon">🔍</span>
+                    <span>Recherche</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="dashboard.html">
+                    <span class="icon">❤️</span>
+                    <span>Favoris</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="dashboard.html">
+                    <span class="icon">👤</span>
+                    <span>Profil</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>

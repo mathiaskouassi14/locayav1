@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechercher un logement - LOCAYA</title>
+    <meta name="description" content="Recherchez votre logement idéal à Abidjan. Filtrez par prix, quartier, type et trouvez rapidement.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="flex-between">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    LOCAYA
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="#" class="active">Rechercher</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <a href="login.html" class="btn btn-outline">Se connecter</a>
+                        <a href="signup.html" class="btn btn-primary">S'inscrire</a>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Header -->
+    <div class="search-header">
+        <div class="container">
+            <h1 style="margin-bottom: var(--spacing-6); color: var(--gray-900);">
+                🔍 Rechercher un logement
+            </h1>
+            
+            <!-- Advanced Search Filters -->
+            <div class="card" style="margin-bottom: var(--spacing-6);">
+                <form id="searchForm" class="search-form">
+                    <div class="form-group">
+                        <input type="text" id="searchLocation" name="location" placeholder=" ">
+                        <label for="searchLocation">📍 Localisation</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="searchType" name="type">
+                            <option value="">Tous types</option>
+                            <option value="Villa">Villa</option>
+                            <option value="Appartement">Appartement</option>
+                            <option value="Duplex">Duplex</option>
+                            <option value="Studio">Studio</option>
+                            <option value="Maison">Maison</option>
+                            <option value="Loft">Loft</option>
+                            <option value="Penthouse">Penthouse</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="searchBedrooms" name="bedrooms">
+                            <option value="">Chambres</option>
+                            <option value="1">1 chambre</option>
+                            <option value="2">2 chambres</option>
+                            <option value="3">3 chambres</option>
+                            <option value="4+">4+ chambres</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        Rechercher
+                    </button>
+                </form>
+                
+                <!-- Advanced Filters (Initially Hidden) -->
+                <div id="advancedFilters" style="display: none; margin-top: var(--spacing-6); padding-top: var(--spacing-6); border-top: 1px solid var(--gray-200);">
+                    <div class="search-filters">
+                        <div class="filter-group">
+                            <label>Prix min:</label>
+                            <input type="number" id="minPrice" name="minPrice" placeholder="0" min="0" step="50000">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Prix max:</label>
+                            <input type="number" id="maxPrice" name="maxPrice" placeholder="1000000" min="0" step="50000">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Surface min:</label>
+                            <input type="number" id="minArea" name="minArea" placeholder="30" min="0">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Salles de bain:</label>
+                            <select id="bathrooms" name="bathrooms">
+                                <option value="">Toutes</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3+">3+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: var(--spacing-4);">
+                    <button type="button" id="toggleAdvanced" class="btn btn-outline btn-sm">
+                        ⚙️ Filtres avancés
+                    </button>
+                    <button type="button" id="resetFilters" class="btn btn-outline btn-sm">
+                        🔄 Réinitialiser
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search Results Meta -->
+            <div class="search-results-meta">
+                <div class="results-count" id="resultsCount">
+                    Recherche en cours...
+                </div>
+                
+                <div style="display: flex; gap: var(--spacing-3); align-items: center;">
+                    <div class="filter-group">
+                        <label>Trier par:</label>
+                        <select id="sortBy">
+                            <option value="price-asc">Prix croissant</option>
+                            <option value="price-desc">Prix décroissant</option>
+                            <option value="rating-desc">Mieux notés</option>
+                            <option value="area-desc">Plus grands</option>
+                            <option value="recent">Plus récents</option>
+                        </select>
+                    </div>
+                    
+                    <div class="view-toggle">
+                        <button type="button" id="gridView" class="active" title="Vue grille">⊞</button>
+                        <button type="button" id="listView" title="Vue liste">☰</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    <main style="padding: var(--spacing-8) 0; background: var(--gray-50); min-height: 60vh;">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loadingState" style="text-align: center; padding: var(--spacing-12);">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: var(--spacing-4); color: var(--gray-600);">
+                    Recherche de logements en cours...
+                </p>
+            </div>
+            
+            <!-- Results Grid -->
+            <div id="searchResults" class="grid grid-3" style="display: none;">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+            
+            <!-- No Results -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-icon">🏠</div>
+                <h3 style="margin-bottom: var(--spacing-4);">Aucun logement trouvé</h3>
+                <p style="margin-bottom: var(--spacing-6); color: var(--gray-600);">
+                    Essayez d'élargir vos critères de recherche ou explorez d'autres quartiers.
+                </p>
+                <div style="display: flex; gap: var(--spacing-3); justify-content: center; flex-wrap: wrap;">
+                    <button onclick="resetAllFilters()" class="btn btn-primary">
+                        Réinitialiser les filtres
+                    </button>
+                    <a href="index.html" class="btn btn-outline">
+                        Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div id="loadMoreSection" style="text-align: center; margin-top: var(--spacing-8); display: none;">
+                <button id="loadMoreBtn" class="btn btn-outline btn-lg">
+                    Charger plus de résultats
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Popular Searches -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: var(--spacing-8);">
+                Recherches populaires
+            </h2>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-3); justify-content: center;">
+                <button onclick="quickSearch('Cocody', 'Villa')" class="btn btn-outline">
+                    🏘️ Villas Cocody
+                </button>
+                <button onclick="quickSearch('Plateau', 'Appartement')" class="btn btn-outline">
+                    🏢 Appartements Plateau
+                </button>
+                <button onclick="quickSearch('Marcory', '', '0-300000')" class="btn btn-outline">
+                    💰 Moins de 300k FCFA
+                </button>
+                <button onclick="quickSearch('', 'Studio')" class="btn btn-outline">
+                    🏠 Studios
+                </button>
+                <button onclick="quickSearch('Yopougon', '')" class="btn btn-outline">
+                    🌆 Yopougon
+                </button>
+                <button onclick="quickSearch('Treichville', '')" class="btn btn-outline">
+                    🏙️ Treichville
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <ul class="bottom-nav-items">
+            <li class="bottom-nav-item">
+                <a href="index.html">
+                    <span class="icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="#" class="active">
+                    <span class="icon">🔍</span>
+                    <span>Recherche</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="dashboard.html">
+                    <span class="icon">❤️</span>
+                    <span>Favoris</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="dashboard.html">
+                    <span class="icon">👤</span>
+                    <span>Profil</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
