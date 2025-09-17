@@ -358,6 +358,18 @@ function handleSmoothScroll(e) {
 // === UTILITAIRES ===
 
 /**
+ * Vérifie si une propriété est dans les favoris
+ * @param {number} propertyId - ID de la propriété
+ * @returns {boolean} True si la propriété est favorite
+ */
+function isFavorite(propertyId) {
+    if (!currentUser) return false;
+    const favKey = `favorites_${currentUser.id}`;
+    const favorites = JSON.parse(localStorage.getItem(favKey) || '[]');
+    return favorites.includes(propertyId);
+}
+
+/**
  * Crée le HTML d'une carte de propriété
  * @param {Object} property - Les données de la propriété
  * @param {number} delay - Délai d'animation en ms
@@ -370,20 +382,20 @@ function createPropertyCard(property, delay = 0) {
                 <img src="${property.images[0]}" alt="${property.title}" loading="lazy">
                 <div class="property-badge">${property.status}</div>
                 <button class="property-favorite" onclick="toggleFavorite(${property.id})" title="Ajouter aux favoris">
-                    <i data-lucide="heart"></i>
+                    <i data-lucide="heart" style="fill: ${isFavorite(property.id) ? 'currentColor' : 'none'};"></i>
                 </button>
             </div>
             
             <div class="property-content">
                 <h3 class="property-title">${property.title}</h3>
                 <div class="property-location">
-                    <i data-lucide="map-pin"></i> ${property.location}
+                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i> ${property.location}
                 </div>
                 
                 <div class="property-features">
-                    <span><i data-lucide="bed"></i> ${property.bedrooms} ch.</span>
-                    <span><i data-lucide="bath"></i> ${property.bathrooms} sdb</span>
-                    <span><i data-lucide="square"></i> ${property.area}m²</span>
+                    <span><i data-lucide="bed" style="width: 14px; height: 14px;"></i> ${property.bedrooms} ch.</span>
+                    <span><i data-lucide="bath" style="width: 14px; height: 14px;"></i> ${property.bathrooms} sdb</span>
+                    <span><i data-lucide="square" style="width: 14px; height: 14px;"></i> ${property.area}m²</span>
                 </div>
                 
                 <div class="property-price">
@@ -395,7 +407,7 @@ function createPropertyCard(property, delay = 0) {
                         Voir détails
                     </a>
                     <button class="btn btn-outline" onclick="contactOwner(${property.id})">
-                        <i data-lucide="phone"></i> Contacter
+                        <i data-lucide="phone" style="width: 16px; height: 16px;"></i> Contacter
                     </button>
                 </div>
                 
@@ -423,16 +435,16 @@ function createStarRating(rating) {
     let stars = '';
     
     for (let i = 0; i < fullStars; i++) {
-        stars += '<span class="star"><i data-lucide="star" style="fill: currentColor;"></i></span>';
+        stars += '<span class="star"><i data-lucide="star" style="fill: currentColor; width: 16px; height: 16px;"></i></span>';
     }
     
     if (hasHalfStar) {
-        stars += '<span class="star"><i data-lucide="star" style="fill: currentColor;"></i></span>';
+        stars += '<span class="star"><i data-lucide="star" style="fill: currentColor; width: 16px; height: 16px;"></i></span>';
     }
     
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
     for (let i = 0; i < emptyStars; i++) {
-        stars += '<span class="star empty"><i data-lucide="star"></i></span>';
+        stars += '<span class="star empty"><i data-lucide="star" style="width: 16px; height: 16px;"></i></span>';
     }
     
     return stars;
@@ -468,14 +480,16 @@ function toggleFavorite(propertyId) {
     if (favorites.includes(propertyId)) {
         // Retirer des favoris
         favorites = favorites.filter(id => id !== propertyId);
-        button.style.color = 'var(--gray-400)';
         button.classList.remove('active');
+        const icon = button.querySelector('i');
+        if (icon) icon.style.fill = 'none';
         showToast('Favori retiré', 'Propriété retirée de vos favoris', 'info');
     } else {
         // Ajouter aux favoris
         favorites.push(propertyId);
-        button.style.color = 'var(--accent-red)';
         button.classList.add('active', 'heart-beat');
+        const icon = button.querySelector('i');
+        if (icon) icon.style.fill = 'currentColor';
         showToast('Favori ajouté', 'Propriété ajoutée à vos favoris', 'success');
         
         setTimeout(() => {
@@ -529,13 +543,13 @@ function createContactModal(property) {
                 <h5 style="margin-bottom: var(--spacing-3);">Contact : ${property.contact.owner}</h5>
                 <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
                     <div style="display: flex; align-items: center; gap: var(--spacing-2);">
-                        <i data-lucide="phone"></i>
+                        <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
                         <a href="tel:${property.contact.phone}" style="color: var(--primary-violet);">
                             ${property.contact.phone}
                         </a>
                     </div>
                     <div style="display: flex; align-items: center; gap: var(--spacing-2);">
-                        <i data-lucide="mail"></i>
+                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
                         <a href="mailto:${property.contact.email}" style="color: var(--primary-violet);">
                             ${property.contact.email}
                         </a>

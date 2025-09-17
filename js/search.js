@@ -425,20 +425,20 @@ function createSearchPropertyCard(property, delay = 0) {
                 <div class="property-badge">${property.status}</div>
                 <button class="property-favorite ${isFavorite(property.id) ? 'active' : ''}" 
                         onclick="toggleFavorite(${property.id})" title="Ajouter aux favoris">
-                    ❤️
+                    <i data-lucide="heart" style="fill: ${isFavorite(property.id) ? 'currentColor' : 'none'};"></i>
                 </button>
             </div>
             
             <div class="property-content">
                 <h3 class="property-title">${property.title}</h3>
                 <div class="property-location">
-                    📍 ${property.location}
+                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i> ${property.location}
                 </div>
                 
                 <div class="property-features">
-                    <span>🛏️ ${property.bedrooms} ch.</span>
-                    <span>🚿 ${property.bathrooms} sdb</span>
-                    <span>📐 ${property.area}m²</span>
+                    <span><i data-lucide="bed" style="width: 14px; height: 14px;"></i> ${property.bedrooms} ch.</span>
+                    <span><i data-lucide="bath" style="width: 14px; height: 14px;"></i> ${property.bathrooms} sdb</span>
+                    <span><i data-lucide="square" style="width: 14px; height: 14px;"></i> ${property.area}m²</span>
                 </div>
                 
                 <div class="property-price">
@@ -459,7 +459,7 @@ function createSearchPropertyCard(property, delay = 0) {
                         Voir détails
                     </a>
                     <button class="btn btn-outline btn-sm" onclick="contactOwner(${property.id})">
-                        📞
+                        <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
                     </button>
                 </div>
             </div>
@@ -484,7 +484,7 @@ function createListPropertyCard(property, delay = 0) {
                 <div class="property-badge">${property.status}</div>
                 <button class="property-favorite ${isFavorite(property.id) ? 'active' : ''}" 
                         onclick="toggleFavorite(${property.id})" title="Ajouter aux favoris">
-                    ❤️
+                    <i data-lucide="heart" style="fill: ${isFavorite(property.id) ? 'currentColor' : 'none'};"></i>
                 </button>
             </div>
             
@@ -494,13 +494,13 @@ function createListPropertyCard(property, delay = 0) {
                 </h3>
                 
                 <div class="property-location" style="margin-bottom: var(--spacing-3);">
-                    📍 ${property.location}
+                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i> ${property.location}
                 </div>
                 
                 <div class="property-features" style="margin-bottom: var(--spacing-3);">
-                    <span>🛏️ ${property.bedrooms} ch.</span>
-                    <span>🚿 ${property.bathrooms} sdb</span>
-                    <span>📐 ${property.area}m²</span>
+                    <span><i data-lucide="bed" style="width: 14px; height: 14px;"></i> ${property.bedrooms} ch.</span>
+                    <span><i data-lucide="bath" style="width: 14px; height: 14px;"></i> ${property.bathrooms} sdb</span>
+                    <span><i data-lucide="square" style="width: 14px; height: 14px;"></i> ${property.area}m²</span>
                 </div>
                 
                 <div style="display: flex; align-items: center; gap: var(--spacing-2); margin-bottom: var(--spacing-3);">
@@ -526,7 +526,7 @@ function createListPropertyCard(property, delay = 0) {
                             Voir détails
                         </a>
                         <button class="btn btn-outline btn-sm" onclick="contactOwner(${property.id})">
-                            📞
+                            <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
                         </button>
                     </div>
                 </div>

@@ -109,14 +109,14 @@ function populatePropertyDetails() {
     
     // Titre et localisation
     document.getElementById('propertyTitle').textContent = currentProperty.title;
-    document.getElementById('propertyLocation').innerHTML = `📍 ${currentProperty.location}`;
+    document.getElementById('propertyLocation').innerHTML = `<i data-lucide="map-pin" style="width: 16px; height: 16px;"></i> ${currentProperty.location}`;
     
     // Caractéristiques
     document.getElementById('propertyFeatures').innerHTML = `
-        <span>🛏️ ${currentProperty.bedrooms} chambres</span>
-        <span>🚿 ${currentProperty.bathrooms} salles de bain</span>
-        <span>📐 ${currentProperty.area}m²</span>
-        <span>⭐ ${currentProperty.rating}/5</span>
+        <span><i data-lucide="bed" style="width: 16px; height: 16px;"></i> ${currentProperty.bedrooms} chambres</span>
+        <span><i data-lucide="bath" style="width: 16px; height: 16px;"></i> ${currentProperty.bathrooms} salles de bain</span>
+        <span><i data-lucide="square" style="width: 16px; height: 16px;"></i> ${currentProperty.area}m²</span>
+        <span><i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i> ${currentProperty.rating}/5</span>
     `;
     
     // Prix
@@ -135,7 +135,7 @@ function populatePropertyDetails() {
     // Sidebar stats
     document.getElementById('propertyType').textContent = currentProperty.type;
     document.getElementById('propertyArea').textContent = `${currentProperty.area}m²`;
-    document.getElementById('propertyRating').innerHTML = `${currentProperty.rating}/5 ⭐`;
+    document.getElementById('propertyRating').innerHTML = `${currentProperty.rating}/5 <i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>`;
     document.getElementById('propertyStatus').textContent = currentProperty.status;
     
     // Informations du propriétaire
@@ -151,10 +151,10 @@ function populatePropertyDetails() {
         </div>
         <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
             <a href="tel:${currentProperty.contact.phone}" class="btn btn-outline btn-sm">
-                📞 ${currentProperty.contact.phone}
+                <i data-lucide="phone" style="width: 16px; height: 16px;"></i> ${currentProperty.contact.phone}
             </a>
             <a href="mailto:${currentProperty.contact.email}" class="btn btn-outline btn-sm">
-                ✉️ ${currentProperty.contact.email}
+                <i data-lucide="mail" style="width: 16px; height: 16px;"></i> ${currentProperty.contact.email}
             </a>
         </div>
     `;
@@ -589,13 +589,16 @@ function updateFavoriteButton() {
     const isFavorite = favorites.includes(currentProperty.id);
     
     if (isFavorite) {
-        favoriteBtn.innerHTML = '💖 Retirez des favoris';
+        favoriteBtn.innerHTML = '<i data-lucide="heart" style="fill: currentColor;"></i> Retirez des favoris';
         favoriteBtn.classList.add('active');
-        favoriteBtn.style.color = 'var(--accent-red)';
     } else {
-        favoriteBtn.innerHTML = '❤️ Ajouter aux favoris';
+        favoriteBtn.innerHTML = '<i data-lucide="heart"></i> Ajouter aux favoris';
         favoriteBtn.classList.remove('active');
-        favoriteBtn.style.color = '';
+    }
+    
+    // Réinitialiser les icônes Lucide
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
     }
 }
 

@@ -325,20 +325,20 @@ function createFavoriteCard(property, delay = 0) {
                 <img src="${property.images[0]}" alt="${property.title}" loading="lazy">
                 <div class="property-badge">${property.status}</div>
                 <button class="property-favorite active" onclick="removeFavorite(${property.id})" title="Retirer des favoris">
-                    💖
+                    <i data-lucide="heart" style="fill: currentColor;"></i>
                 </button>
             </div>
             
             <div class="property-content">
                 <h3 class="property-title">${property.title}</h3>
                 <div class="property-location">
-                    📍 ${property.location}
+                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i> ${property.location}
                 </div>
                 
                 <div class="property-features">
-                    <span>🛏️ ${property.bedrooms} ch.</span>
-                    <span>🚿 ${property.bathrooms} sdb</span>
-                    <span>📐 ${property.area}m²</span>
+                    <span><i data-lucide="bed" style="width: 14px; height: 14px;"></i> ${property.bedrooms} ch.</span>
+                    <span><i data-lucide="bath" style="width: 14px; height: 14px;"></i> ${property.bathrooms} sdb</span>
+                    <span><i data-lucide="square" style="width: 14px; height: 14px;"></i> ${property.area}m²</span>
                 </div>
                 
                 <div class="property-price">
@@ -359,13 +359,13 @@ function createFavoriteCard(property, delay = 0) {
                         Voir détails
                     </a>
                     <button class="btn btn-outline btn-sm" onclick="contactOwner(${property.id})">
-                        📞
+                        <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
                     </button>
                 </div>
                 
                 <div style="text-align: center; margin-top: var(--spacing-3);">
                     <button onclick="removeFavorite(${property.id})" class="btn btn-outline btn-sm">
-                        🗑️ Retirer des favoris
+                        <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i> Retirer des favoris
                     </button>
                 </div>
             </div>
@@ -394,10 +394,10 @@ function createSearchHistoryCard(search, delay = 0) {
                         ${search.query || 'Recherche générale'}
                     </h4>
                     <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-2); margin-bottom: var(--spacing-3);">
-                        ${search.filters.location ? `<span class="filter-tag">📍 ${search.filters.location}</span>` : ''}
-                        ${search.filters.type ? `<span class="filter-tag">🏠 ${search.filters.type}</span>` : ''}
-                        ${search.filters.minPrice ? `<span class="filter-tag">💰 ${formatPrice(search.filters.minPrice)}+ FCFA</span>` : ''}
-                        ${search.filters.bedrooms ? `<span class="filter-tag">🛏️ ${search.filters.bedrooms} ch.</span>` : ''}
+                        ${search.filters.location ? `<span class="filter-tag"><i data-lucide="map-pin" style="width: 12px; height: 12px;"></i> ${search.filters.location}</span>` : ''}
+                        ${search.filters.type ? `<span class="filter-tag"><i data-lucide="home" style="width: 12px; height: 12px;"></i> ${search.filters.type}</span>` : ''}
+                        ${search.filters.minPrice ? `<span class="filter-tag"><i data-lucide="coins" style="width: 12px; height: 12px;"></i> ${formatPrice(search.filters.minPrice)}+ FCFA</span>` : ''}
+                        ${search.filters.bedrooms ? `<span class="filter-tag"><i data-lucide="bed" style="width: 12px; height: 12px;"></i> ${search.filters.bedrooms} ch.</span>` : ''}
                     </div>
                     <div style="color: var(--gray-600); font-size: var(--font-size-sm);">
                         ${date} à ${time} • ${search.resultsCount || 0} résultats
@@ -405,10 +405,10 @@ function createSearchHistoryCard(search, delay = 0) {
                 </div>
                 <div style="display: flex; gap: var(--spacing-2);">
                     <button onclick="repeatSearch(${JSON.stringify(search.filters).replace(/"/g, '&quot;')})" class="btn btn-primary btn-sm">
-                        🔍 Refaire
+                        <i data-lucide="search" style="width: 16px; height: 16px;"></i> Refaire
                     </button>
                     <button onclick="deleteSearch(${search.timestamp})" class="btn btn-outline btn-sm">
-                        🗑️
+                        <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
                     </button>
                 </div>
             </div>
@@ -447,16 +447,16 @@ function createMessageCard(message, delay = 0) {
                     </p>
                     ${message.propertyId ? `
                         <a href="property.html?id=${message.propertyId}" style="color: var(--primary-violet); font-size: var(--font-size-sm); margin-top: var(--spacing-2); display: inline-block;">
-                            🏠 Voir le logement concerné →
+                            <i data-lucide="home" style="width: 14px; height: 14px;"></i> Voir le logement concerné →
                         </a>
                     ` : ''}
                 </div>
                 <div style="display: flex; gap: var(--spacing-2);">
                     <button onclick="markMessageRead(${message.id})" class="btn btn-primary btn-sm">
-                        ${isUnread ? '👁️ Marquer lu' : '💬 Répondre'}
+                        ${isUnread ? '<i data-lucide="eye" style="width: 16px; height: 16px;"></i> Marquer lu' : '<i data-lucide="message-circle" style="width: 16px; height: 16px;"></i> Répondre'}
                     </button>
                     <button onclick="deleteMessage(${message.id})" class="btn btn-outline btn-sm">
-                        🗑️
+                        <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
                     </button>
                 </div>
             </div>
@@ -846,7 +846,7 @@ function loadRecentActivity() {
         activities.push({
             type: 'favorite',
             message: `Vous avez ${userFavorites.length} logement${userFavorites.length > 1 ? 's' : ''} en favoris`,
-            icon: '❤️',
+            icon: '<i data-lucide="heart" style="width: 20px; height: 20px;"></i>',
             time: 'Récemment'
         });
     }
@@ -857,7 +857,7 @@ function loadRecentActivity() {
         activities.push({
             type: 'search',
             message: `Dernière recherche: ${lastSearch.query || 'Recherche générale'}`,
-            icon: '🔍',
+            icon: '<i data-lucide="search" style="width: 20px; height: 20px;"></i>',
             time: searchDate.toLocaleDateString('fr-FR')
         });
     }
@@ -868,7 +868,7 @@ function loadRecentActivity() {
             activities.push({
                 type: 'message',
                 message: `${unreadCount} nouveau${unreadCount > 1 ? 'x' : ''} message${unreadCount > 1 ? 's' : ''}`,
-                icon: '💬',
+                icon: '<i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>',
                 time: 'Nouveau'
             });
         }
@@ -877,20 +877,27 @@ function loadRecentActivity() {
     if (activities.length === 0) {
         container.innerHTML = `
             <div style="text-align: center; color: var(--gray-600); padding: var(--spacing-8);">
-                <div style="font-size: 3rem; margin-bottom: var(--spacing-4); opacity: 0.5;">📊</div>
+                <div style="font-size: 3rem; margin-bottom: var(--spacing-4); opacity: 0.5;">
+                    <i data-lucide="activity" style="width: 48px; height: 48px;"></i>
+                </div>
                 <p>Votre activité apparaîtra ici</p>
             </div>
         `;
     } else {
         container.innerHTML = activities.map(activity => `
             <div style="display: flex; align-items: center; gap: var(--spacing-4); padding: var(--spacing-4); border-bottom: 1px solid var(--gray-200);">
-                <div style="font-size: var(--font-size-xl);">${activity.icon}</div>
+                <div style="color: var(--primary-purple);">${activity.icon}</div>
                 <div style="flex: 1;">
                     <div>${activity.message}</div>
                     <div style="font-size: var(--font-size-sm); color: var(--gray-600);">${activity.time}</div>
                 </div>
             </div>
         `).join('');
+        
+        // Réinitialiser les icônes Lucide
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
 }
 
