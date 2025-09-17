@@ -6,6 +6,9 @@
     <title>Rechercher un logement - LOCAYA</title>
     <meta name="description" content="Recherchez votre logement idéal à Abidjan. Filtrez par prix, quartier, type et trouvez rapidement.">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +36,9 @@
                         <a href="signup.html" class="btn btn-primary">S'inscrire</a>
                     </div>
                     
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </nav>
             </div>
         </div>
@@ -43,7 +48,7 @@
     <div class="search-header">
         <div class="container">
             <h1 style="margin-bottom: var(--spacing-6); color: var(--gray-900);">
-                🔍 Rechercher un logement
+                <i data-lucide="search"></i> Rechercher un logement
             </h1>
             
             <!-- Advanced Search Filters -->
@@ -51,7 +56,7 @@
                 <form id="searchForm" class="search-form">
                     <div class="form-group">
                         <input type="text" id="searchLocation" name="location" placeholder=" ">
-                        <label for="searchLocation">📍 Localisation</label>
+                        <label for="searchLocation"><i data-lucide="map-pin"></i> Localisation</label>
                     </div>
                     
                     <div class="form-group">
@@ -114,10 +119,10 @@
                 
                 <div style="text-align: center; margin-top: var(--spacing-4);">
                     <button type="button" id="toggleAdvanced" class="btn btn-outline btn-sm">
-                        ⚙️ Filtres avancés
+                        <i data-lucide="settings"></i> Filtres avancés
                     </button>
                     <button type="button" id="resetFilters" class="btn btn-outline btn-sm">
-                        🔄 Réinitialiser
+                        <i data-lucide="rotate-ccw"></i> Réinitialiser
                     </button>
                 </div>
             </div>
@@ -141,8 +146,12 @@
                     </div>
                     
                     <div class="view-toggle">
-                        <button type="button" id="gridView" class="active" title="Vue grille">⊞</button>
-                        <button type="button" id="listView" title="Vue liste">☰</button>
+                        <button type="button" id="gridView" class="active" title="Vue grille">
+                            <i data-lucide="grid-3x3"></i>
+                        </button>
+                        <button type="button" id="listView" title="Vue liste">
+                            <i data-lucide="list"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -167,7 +176,9 @@
             
             <!-- No Results -->
             <div id="noResults" class="no-results" style="display: none;">
-                <div class="no-results-icon">🏠</div>
+                <div class="no-results-icon">
+                    <i data-lucide="home"></i>
+                </div>
                 <h3 style="margin-bottom: var(--spacing-4);">Aucun logement trouvé</h3>
                 <p style="margin-bottom: var(--spacing-6); color: var(--gray-600);">
                     Essayez d'élargir vos critères de recherche ou explorez d'autres quartiers.
@@ -199,22 +210,22 @@
             </h2>
             <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-3); justify-content: center;">
                 <button onclick="quickSearch('Cocody', 'Villa')" class="btn btn-outline">
-                    🏘️ Villas Cocody
+                    <i data-lucide="building"></i> Villas Cocody
                 </button>
                 <button onclick="quickSearch('Plateau', 'Appartement')" class="btn btn-outline">
-                    🏢 Appartements Plateau
+                    <i data-lucide="building-2"></i> Appartements Plateau
                 </button>
                 <button onclick="quickSearch('Marcory', '', '0-300000')" class="btn btn-outline">
-                    💰 Moins de 300k FCFA
+                    <i data-lucide="coins"></i> Moins de 300k FCFA
                 </button>
                 <button onclick="quickSearch('', 'Studio')" class="btn btn-outline">
-                    🏠 Studios
+                    <i data-lucide="home"></i> Studios
                 </button>
                 <button onclick="quickSearch('Yopougon', '')" class="btn btn-outline">
-                    🌆 Yopougon
+                    <i data-lucide="map-pin"></i> Yopougon
                 </button>
                 <button onclick="quickSearch('Treichville', '')" class="btn btn-outline">
-                    🏙️ Treichville
+                    <i data-lucide="map-pin"></i> Treichville
                 </button>
             </div>
         </div>
@@ -225,25 +236,25 @@
         <ul class="bottom-nav-items">
             <li class="bottom-nav-item">
                 <a href="index.html">
-                    <span class="icon">🏠</span>
+                    <span class="icon"><i data-lucide="home"></i></span>
                     <span>Accueil</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="#" class="active">
-                    <span class="icon">🔍</span>
+                    <span class="icon"><i data-lucide="search"></i></span>
                     <span>Recherche</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="dashboard.html">
-                    <span class="icon">❤️</span>
+                    <span class="icon"><i data-lucide="heart"></i></span>
                     <span>Favoris</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="dashboard.html">
-                    <span class="icon">👤</span>
+                    <span class="icon"><i data-lucide="user"></i></span>
                     <span>Profil</span>
                 </a>
             </li>
@@ -256,5 +267,13 @@
     <!-- Scripts -->
     <script src="js/app.js"></script>
     <script src="js/search.js"></script>
+    <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>

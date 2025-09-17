@@ -6,6 +6,9 @@
     <title>Connexion - LOCAYA</title>
     <meta name="description" content="Connectez-vous à votre compte LOCAYA pour gérer vos favoris et recherches.">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +36,9 @@
                         <a href="signup.html" class="btn btn-primary">S'inscrire</a>
                     </div>
                     
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </nav>
             </div>
         </div>
@@ -58,7 +63,7 @@
                     <label for="password">Mot de passe</label>
                     <button type="button" class="password-toggle" id="togglePassword" 
                             style="position: absolute; right: var(--spacing-4); top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: var(--font-size-lg);">
-                        👁️
+                        <i data-lucide="eye"></i>
                     </button>
                 </div>
                 
@@ -75,7 +80,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="loginBtn">
-                    🔐 Se connecter
+                    <i data-lucide="lock"></i> Se connecter
                 </button>
                 
                 <div id="loginError" class="error-message" style="display: none; color: var(--accent-red); text-align: center; margin-top: var(--spacing-4); padding: var(--spacing-3); background: rgba(255, 0, 0, 0.1); border-radius: var(--radius-sm);">
@@ -88,10 +93,10 @@
             
             <div style="display: flex; gap: var(--spacing-3); margin-bottom: var(--spacing-6);">
                 <button type="button" onclick="socialLogin('google')" class="btn btn-outline" style="flex: 1;">
-                    🔍 Google
+                    <i data-lucide="chrome"></i> Google
                 </button>
                 <button type="button" onclick="socialLogin('facebook')" class="btn btn-outline" style="flex: 1;">
-                    📘 Facebook
+                    <i data-lucide="facebook"></i> Facebook
                 </button>
             </div>
             
@@ -111,7 +116,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Comptes de démonstration</h3>
-                <button class="modal-close" onclick="closeModal('demoModal')">&times;</button>
+                <button class="modal-close" onclick="closeModal('demoModal')">
+                    <i data-lucide="x"></i>
+                </button>
             </div>
             
             <p style="margin-bottom: var(--spacing-6); color: var(--gray-600);">
@@ -120,7 +127,7 @@
             
             <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
                 <div class="card" style="padding: var(--spacing-4);">
-                    <h4 style="margin-bottom: var(--spacing-2);">👤 Utilisateur Standard</h4>
+                    <h4 style="margin-bottom: var(--spacing-2);"><i data-lucide="user"></i> Utilisateur Standard</h4>
                     <p style="margin-bottom: var(--spacing-3); color: var(--gray-600);">
                         <strong>Email :</strong> user@locaya.ci<br>
                         <strong>Mot de passe :</strong> demo123
@@ -131,7 +138,7 @@
                 </div>
                 
                 <div class="card" style="padding: var(--spacing-4);">
-                    <h4 style="margin-bottom: var(--spacing-2);">🏠 Propriétaire</h4>
+                    <h4 style="margin-bottom: var(--spacing-2);"><i data-lucide="home"></i> Propriétaire</h4>
                     <p style="margin-bottom: var(--spacing-3); color: var(--gray-600);">
                         <strong>Email :</strong> owner@locaya.ci<br>
                         <strong>Mot de passe :</strong> demo123
@@ -148,7 +155,7 @@
     <button onclick="showModal('demoModal')" 
             style="position: fixed; bottom: var(--spacing-6); right: var(--spacing-6); background: var(--gradient-primary); color: white; border: none; padding: var(--spacing-4); border-radius: var(--radius-full); box-shadow: var(--shadow-lg); cursor: pointer; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); animation: pulse 2s infinite; z-index: var(--z-tooltip);"
             title="Comptes de démonstration">
-        🎭 Demo
+        <i data-lucide="play"></i> Demo
     </button>
 
     <!-- Toast Container -->
@@ -195,11 +202,12 @@
                     const passwordInput = document.getElementById('password');
                     if (passwordInput.type === 'password') {
                         passwordInput.type = 'text';
-                        togglePassword.textContent = '🙈';
+                        togglePassword.innerHTML = '<i data-lucide="eye-off"></i>';
                     } else {
                         passwordInput.type = 'password';
-                        togglePassword.textContent = '👁️';
+                        togglePassword.innerHTML = '<i data-lucide="eye"></i>';
                     }
+                    lucide.createIcons();
                 });
             }
             
@@ -301,6 +309,13 @@
         function showForgotPassword() {
             showToast('Mot de passe oublié', 'Fonctionnalité en cours de développement', 'info');
         }
+        
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
     </script>
 </body>
 </html>

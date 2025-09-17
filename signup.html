@@ -6,6 +6,9 @@
     <title>Inscription - LOCAYA</title>
     <meta name="description" content="Créez votre compte LOCAYA et trouvez le logement de vos rêves à Abidjan.">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +36,9 @@
                         <a href="#" class="btn btn-primary active">S'inscrire</a>
                     </div>
                     
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </nav>
             </div>
         </div>
@@ -76,7 +81,7 @@
                     <label for="password">Mot de passe</label>
                     <button type="button" class="password-toggle" id="togglePassword" 
                             style="position: absolute; right: var(--spacing-4); top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: var(--font-size-lg);">
-                        👁️
+                        <i data-lucide="eye"></i>
                     </button>
                 </div>
                 
@@ -100,8 +105,8 @@
                 <div class="form-group">
                     <select id="accountType" name="accountType" required>
                         <option value="">Choisir le type de compte</option>
-                        <option value="user">🏠 Je cherche un logement</option>
-                        <option value="owner">🏘️ Je loue des logements</option>
+                        <option value="user">Je cherche un logement</option>
+                        <option value="owner">Je loue des logements</option>
                     </select>
                 </div>
                 
@@ -129,7 +134,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="signupBtn">
-                    🚀 Créer mon compte
+                    <i data-lucide="user-plus"></i> Créer mon compte
                 </button>
                 
                 <div id="signupError" class="error-message" style="display: none; color: var(--accent-red); text-align: center; margin-top: var(--spacing-4); padding: var(--spacing-3); background: rgba(255, 0, 0, 0.1); border-radius: var(--radius-sm);">
@@ -142,10 +147,10 @@
             
             <div style="display: flex; gap: var(--spacing-3); margin-bottom: var(--spacing-6);">
                 <button type="button" onclick="socialSignup('google')" class="btn btn-outline" style="flex: 1;">
-                    🔍 Google
+                    <i data-lucide="chrome"></i> Google
                 </button>
                 <button type="button" onclick="socialSignup('facebook')" class="btn btn-outline" style="flex: 1;">
-                    📘 Facebook
+                    <i data-lucide="facebook"></i> Facebook
                 </button>
             </div>
             
@@ -164,7 +169,9 @@
     <div id="successModal" class="modal">
         <div class="modal-content">
             <div style="text-align: center; padding: var(--spacing-6);">
-                <div style="font-size: 4rem; margin-bottom: var(--spacing-4);">🎉</div>
+                <div style="font-size: 4rem; margin-bottom: var(--spacing-4);">
+                    <i data-lucide="check-circle" style="color: var(--secondary-gold);"></i>
+                </div>
                 <h3 style="margin-bottom: var(--spacing-4); color: var(--primary-violet);">
                     Compte créé avec succès !
                 </h3>
@@ -200,11 +207,12 @@
                 togglePassword.addEventListener('click', function() {
                     if (passwordInput.type === 'password') {
                         passwordInput.type = 'text';
-                        togglePassword.textContent = '🙈';
+                        togglePassword.innerHTML = '<i data-lucide="eye-off"></i>';
                     } else {
                         passwordInput.type = 'password';
-                        togglePassword.textContent = '👁️';
+                        togglePassword.innerHTML = '<i data-lucide="eye"></i>';
                     }
+                    lucide.createIcons();
                 });
             }
             
@@ -253,20 +261,20 @@
                 case 0:
                 case 1:
                     strengthClass = 'strength-weak';
-                    strengthMessage = '🔴 Mot de passe faible';
+                    strengthMessage = 'Mot de passe faible';
                     break;
                 case 2:
                     strengthClass = 'strength-fair';
-                    strengthMessage = '🟠 Mot de passe moyen';
+                    strengthMessage = 'Mot de passe moyen';
                     break;
                 case 3:
                 case 4:
                     strengthClass = 'strength-good';
-                    strengthMessage = '🟡 Mot de passe bon';
+                    strengthMessage = 'Mot de passe bon';
                     break;
                 case 5:
                     strengthClass = 'strength-strong';
-                    strengthMessage = '🟢 Mot de passe excellent';
+                    strengthMessage = 'Mot de passe excellent';
                     break;
             }
             
@@ -406,6 +414,13 @@
         function showPrivacy() {
             showToast('Politique de confidentialité', 'La politique sera bientôt disponible', 'info');
         }
+        
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
     </script>
 </body>
 </html>

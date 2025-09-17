@@ -6,6 +6,9 @@
     <title>Détails de la propriété - LOCAYA</title>
     <meta name="description" content="Découvrez tous les détails de ce logement à Abidjan.">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +36,9 @@
                         <a href="signup.html" class="btn btn-primary">S'inscrire</a>
                     </div>
                     
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </nav>
             </div>
         </div>
@@ -52,7 +57,9 @@
 
             <!-- Property Not Found -->
             <div id="propertyNotFound" style="display: none; text-align: center; padding: var(--spacing-12);">
-                <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">🏠</div>
+                <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">
+                    <i data-lucide="home"></i>
+                </div>
                 <h2 style="margin-bottom: var(--spacing-4);">Logement non trouvé</h2>
                 <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
                     Ce logement n'existe pas ou a été supprimé.
@@ -83,19 +90,19 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin: var(--spacing-6) 0; flex-wrap: wrap; gap: var(--spacing-4);">
                     <div style="display: flex; gap: var(--spacing-3); align-items: center;">
                         <button id="favoriteBtn" class="btn btn-outline" onclick="togglePropertyFavorite()">
-                            ❤️ Ajouter aux favoris
+                            <i data-lucide="heart"></i> Ajouter aux favoris
                         </button>
                         <button class="btn btn-outline" onclick="shareProperty()">
-                            📤 Partager
+                            <i data-lucide="share-2"></i> Partager
                         </button>
                     </div>
                     
                     <div style="display: flex; gap: var(--spacing-2); align-items: center;">
                         <button class="btn btn-outline btn-sm" onclick="previousProperty()">
-                            ← Précédent
+                            <i data-lucide="chevron-left"></i> Précédent
                         </button>
                         <button class="btn btn-outline btn-sm" onclick="nextProperty()">
-                            Suivant →
+                            Suivant <i data-lucide="chevron-right"></i>
                         </button>
                     </div>
                 </div>
@@ -114,7 +121,7 @@
                         <div style="margin-bottom: var(--spacing-8);">
                             <h1 id="propertyTitle">Titre du logement</h1>
                             <div class="property-location" id="propertyLocation">
-                                📍 Localisation
+                                <i data-lucide="map-pin"></i> Localisation
                             </div>
                             <div class="property-features" id="propertyFeatures">
                                 <!-- Features will be populated -->
@@ -141,7 +148,7 @@
                         <div style="margin-bottom: var(--spacing-8);">
                             <h2 style="margin-bottom: var(--spacing-4);">Localisation</h2>
                             <div style="width: 100%; height: 300px; background: var(--gray-200); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--gray-600);">
-                                🗺️ Carte interactive (à venir)
+                                <i data-lucide="map"></i> Carte interactive (à venir)
                                 <div id="propertyCoordinates" style="display: none;"></div>
                             </div>
                         </div>
@@ -182,7 +189,7 @@
                             </div>
                             
                             <button type="submit" class="btn btn-danger btn-lg" style="width: 100%;">
-                                📞 Envoyer le message
+                                <i data-lucide="phone"></i> Envoyer le message
                             </button>
                         </form>
 
@@ -237,7 +244,7 @@
                         
                         <div>
                             <button id="addReviewBtn" class="btn btn-primary" onclick="openReviewModal()">
-                                ✍️ Laisser un avis
+                                <i data-lucide="edit-3"></i> Laisser un avis
                             </button>
                         </div>
                     </div>
@@ -277,12 +284,12 @@
                 
                 <button id="prevGalleryBtn" onclick="previousGalleryImage()" 
                         style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: white; border: none; padding: var(--spacing-3); border-radius: var(--radius-full); cursor: pointer; font-size: var(--font-size-xl);">
-                    ‹
+                    <i data-lucide="chevron-left"></i>
                 </button>
                 
                 <button id="nextGalleryBtn" onclick="nextGalleryImage()" 
                         style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: white; border: none; padding: var(--spacing-3); border-radius: var(--radius-full); cursor: pointer; font-size: var(--font-size-xl);">
-                    ›
+                    <i data-lucide="chevron-right"></i>
                 </button>
                 
                 <div style="padding: var(--spacing-4); background: rgba(0,0,0,0.8); color: white;">
@@ -300,7 +307,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Laisser un avis</h3>
-                <button class="modal-close" onclick="closeModal('reviewModal')">&times;</button>
+               <button class="modal-close" onclick="closeModal('reviewModal')">
+                   <i data-lucide="x"></i>
+               </button>
             </div>
             
             <form id="reviewForm">
@@ -310,11 +319,11 @@
                             Note sur 5:
                         </label>
                         <div id="ratingStars" style="display: flex; gap: var(--spacing-1); font-size: var(--font-size-2xl);">
-                            <span class="rating-star" data-rating="1">☆</span>
-                            <span class="rating-star" data-rating="2">☆</span>
-                            <span class="rating-star" data-rating="3">☆</span>
-                            <span class="rating-star" data-rating="4">☆</span>
-                            <span class="rating-star" data-rating="5">☆</span>
+                           <span class="rating-star" data-rating="1"><i data-lucide="star"></i></span>
+                           <span class="rating-star" data-rating="2"><i data-lucide="star"></i></span>
+                           <span class="rating-star" data-rating="3"><i data-lucide="star"></i></span>
+                           <span class="rating-star" data-rating="4"><i data-lucide="star"></i></span>
+                           <span class="rating-star" data-rating="5"><i data-lucide="star"></i></span>
                         </div>
                         <input type="hidden" name="rating" id="reviewRating" value="5">
                     </div>
@@ -342,19 +351,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Partager ce logement</h3>
-                <button class="modal-close" onclick="closeModal('shareModal')">&times;</button>
+               <button class="modal-close" onclick="closeModal('shareModal')">
+                   <i data-lucide="x"></i>
+               </button>
             </div>
             
             <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
                 <div style="display: flex; gap: var(--spacing-3); justify-content: center; flex-wrap: wrap;">
                     <button onclick="shareVia('whatsapp')" class="btn btn-outline">
-                        💬 WhatsApp
+                       <i data-lucide="message-circle"></i> WhatsApp
                     </button>
                     <button onclick="shareVia('facebook')" class="btn btn-outline">
-                        📘 Facebook
+                       <i data-lucide="facebook"></i> Facebook
                     </button>
                     <button onclick="shareVia('email')" class="btn btn-outline">
-                        ✉️ Email
+                       <i data-lucide="mail"></i> Email
                     </button>
                 </div>
                 
@@ -364,7 +375,7 @@
                 </div>
                 
                 <button onclick="copyShareUrl()" class="btn btn-primary">
-                    📋 Copier le lien
+                   <i data-lucide="copy"></i> Copier le lien
                 </button>
             </div>
         </div>
@@ -375,25 +386,25 @@
         <ul class="bottom-nav-items">
             <li class="bottom-nav-item">
                 <a href="index.html">
-                    <span class="icon">🏠</span>
+                   <span class="icon"><i data-lucide="home"></i></span>
                     <span>Accueil</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="search.html">
-                    <span class="icon">🔍</span>
+                   <span class="icon"><i data-lucide="search"></i></span>
                     <span>Recherche</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="dashboard.html">
-                    <span class="icon">❤️</span>
+                   <span class="icon"><i data-lucide="heart"></i></span>
                     <span>Favoris</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="dashboard.html">
-                    <span class="icon">👤</span>
+                   <span class="icon"><i data-lucide="user"></i></span>
                     <span>Profil</span>
                 </a>
             </li>
@@ -406,5 +417,13 @@
     <!-- Scripts -->
     <script src="js/app.js"></script>
     <script src="js/property.js"></script>
+   <script>
+       // Initialize Lucide icons
+       document.addEventListener('DOMContentLoaded', function() {
+           if (typeof lucide !== 'undefined') {
+               lucide.createIcons();
+           }
+       });
+   </script>
 </body>
 </html>
