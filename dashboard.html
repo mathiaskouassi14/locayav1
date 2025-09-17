@@ -19,7 +19,8 @@
         <div class="container">
             <div class="flex-between">
                 <a href="index.html" class="logo">
-                    <img src="https://i.ibb.co/JW3zx9xp/5924543068982331981-120-removebg-preview.png" alt="LOCAYA" class="logo-official">
+                    <img src="https://i.ibb.co/4gj4vCgv/5924543068982331982-120.jpg" alt="LOCAYA">
+                    LOCAYA
                 </a>
                 
                 <nav class="nav">
@@ -75,9 +76,6 @@
                         <a href="search.html" class="btn btn-primary">
                             <i data-lucide="search"></i> Rechercher un logement
                         </a>
-                        <button id="addPropertyBtn" class="btn-premium" onclick="openAddPropertyModal()" style="display: none;">
-                            <i data-lucide="plus"></i> Ajouter un bien
-                        </button>
                         <button id="notificationsBtn" class="btn btn-outline" onclick="toggleNotifications()">
                             <i data-lucide="bell"></i> <span id="notificationCount" class="notification-badge" style="display: none;">0</span>
                         </button>
@@ -135,7 +133,7 @@
                 <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
                     Commencez par ajouter votre premier bien immobilier
                 </p>
-                <button onclick="openAddPropertyModal()" class="btn-premium">
+                <button onclick="addNewProperty()" class="btn btn-primary">
                     <i data-lucide="plus"></i> Ajouter mon premier bien
                 </button>
             </div>
