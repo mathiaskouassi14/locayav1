@@ -95,6 +95,7 @@ function initializeDashboardUI() {
     const dashboardSubtitle = document.getElementById('dashboardSubtitle');
     const propertiesTab = document.getElementById('propertiesTab');
     const analyticsTab = document.getElementById('analyticsTab');
+    const addPropertyBtn = document.getElementById('addPropertyBtn');
     
     if (currentUser.accountType === 'owner') {
         if (dashboardTitle) dashboardTitle.textContent = 'Espace Propriétaire';
@@ -103,6 +104,7 @@ function initializeDashboardUI() {
         // Afficher les onglets propriétaire
         if (propertiesTab) propertiesTab.style.display = 'block';
         if (analyticsTab) analyticsTab.style.display = 'block';
+        if (addPropertyBtn) addPropertyBtn.style.display = 'inline-flex';
     }
     
     // Charger les statistiques
@@ -331,11 +333,16 @@ function loadPropertiesContent() {
     const propertiesList = document.getElementById('ownerPropertiesList');
     const noProperties = document.getElementById('noOwnerProperties');
     
-    // Simuler les propriétés du propriétaire
-    const ownerProperties = properties.filter(p => 
-        p.contact.email === currentUser.email || 
-        Math.random() > 0.7 // Simulation
-    ).slice(0, 3);
+    // Charger les propriétés du propriétaire depuis localStorage
+    let ownerProperties = JSON.parse(localStorage.getItem(`properties_${currentUser.id}`) || '[]');
+    
+    // Si aucune propriété, simuler quelques propriétés pour la démo
+    if (ownerProperties.length === 0 && properties.length > 0) {
+        ownerProperties = properties.filter(p => 
+            p.contact.email === currentUser.email || 
+            Math.random() > 0.7 // Simulation
+        ).slice(0, 2);
+    }
     
     if (ownerProperties.length === 0) {
         propertiesList.style.display = 'none';
@@ -610,7 +617,7 @@ function createOwnerPropertyCard(property, delay = 0) {
  * Ajouter une nouvelle propriété
  */
 function addNewProperty() {
-    showToast('Nouvelle propriété', 'Fonctionnalité en développement', 'info');
+    openAddPropertyModal();
 }
 
 /**

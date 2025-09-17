@@ -111,15 +111,25 @@ async function loadProperties() {
 async function loadPopularProperties() {
     console.log('🏠 Chargement des propriétés populaires...');
     
-    if (properties.length === 0) {
-        console.log('⏳ Propriétés pas encore chargées, retry dans 500ms');
-        setTimeout(loadPopularProperties, 1000);
-        return;
-    }
-    
     const container = document.getElementById('popularProperties');
     if (!container) {
         console.log('❌ Container popularProperties non trouvé');
+        return;
+    }
+    
+    // Afficher le loading spinner
+    container.innerHTML = `
+        <div style="text-align: center; padding: var(--spacing-12); grid-column: 1 / -1;">
+            <div class="loading-spinner"></div>
+            <p style="margin-top: var(--spacing-4); color: var(--medium-gray);">
+                Chargement des logements populaires...
+            </p>
+        </div>
+    `;
+    
+    if (properties.length === 0) {
+        console.log('⏳ Propriétés pas encore chargées, retry dans 500ms');
+        setTimeout(loadPopularProperties, 1500);
         return;
     }
     
@@ -130,18 +140,275 @@ async function loadPopularProperties() {
     
     console.log(`📊 ${popularProps.length} propriétés populaires trouvées`);
     
-    container.innerHTML = popularProps.map((property, index) => 
-        createPropertyCard(property, index * 100)
-    ).join('');
-    
-    // Réinitialiser les animations pour les nouvelles cartes
+    // Simuler un délai de chargement pour l'effet premium
     setTimeout(() => {
-        initializeScrollAnimations();
-        // Réinitialiser les icônes Lucide
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
+        container.innerHTML = popularProps.map((property, index) => 
+            createPropertyCard(property, index * 100)
+        ).join('');
+        
+        // Réinitialiser les animations pour les nouvelles cartes
+        setTimeout(() => {
+            initializeScrollAnimations();
+            // Réinitialiser les icônes Lucide
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }, 100);
+        
+        console.log('✅ Propriétés populaires chargées avec succès');
+    }, 800);
+}
+
+// ================================
+// ANIMATIONS FADE-IN AU SCROLL
+// ================================
+
+/**
+ * Initialise les animations fade-in au scroll
+ */
+function initializeFadeInAnimations() {
+    const sections = document.querySelectorAll('.section');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// ================================
+// MODAL AJOUT DE BIEN IMMOBILIER
+// ================================
+
+/**
+ * Ouvre la modal d'ajout de bien
+ */
+function openAddPropertyModal() {
+    if (!currentUser || currentUser.accountType !== 'owner') {
+        showToast('Accès refusé', 'Seuls les propriétaires peuvent ajouter des biens', 'error');
+        return;
+    }
+    
+    const modal = createAddPropertyModal();
+    document.body.appendChild(modal);
+    
+    // Afficher la modal
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+}
+
+/**
+ * Crée la modal d'ajout de bien
+ */
+function createAddPropertyModal() {
+    const modal = document.createElement('div');
+    modal.className = 'add-property-modal';
+    modal.innerHTML = `
+        <div class="add-property-form">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="margin: 0; color: var(--primary-black);">Ajouter un bien immobilier</h2>
+                <button onclick="closeAddPropertyModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--medium-gray);">&times;</button>
+            </div>
+            
+            <form id="addPropertyForm">
+                <div style="display: grid; gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Nom du bien *</label>
+                        <input type="text" name="title" required style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif;" placeholder="Ex: Villa moderne avec piscine">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Quartier *</label>
+                            <input type="text" name="location" required style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif;" placeholder="Ex: Cocody, Abidjan">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Type de bien *</label>
+                            <select name="type" required style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif;">
+                                <option value="">Choisir un type</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Appartement">Appartement</option>
+                                <option value="Studio">Studio</option>
+                                <option value="Maison">Maison</option>
+                                <option value="Duplex">Duplex</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Prix (FCFA) *</label>
+                            <input type="number" name="price" required style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif;" placeholder="250000">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Chambres</label>
+                            <input type="number" name="bedrooms" style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif;" placeholder="3">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Surface (m²)</label>
+                            <input type="number" name="area" style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif;" placeholder="120">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Description *</label>
+                        <textarea name="description" required rows="4" style="width: 100%; padding: 12px 16px; border: 2px solid var(--silver); border-radius: 8px; font-family: 'Poppins', sans-serif; resize: vertical;" placeholder="Décrivez votre bien en détail (minimum 100 caractères)"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-black);">Photos du bien</label>
+                        <div class="photo-upload-area" onclick="document.getElementById('photoInput').click()">
+                            <i data-lucide="camera" style="width: 48px; height: 48px; color: var(--medium-gray); margin-bottom: 1rem;"></i>
+                            <p style="color: var(--medium-gray); margin: 0;">Cliquez pour ajouter des photos</p>
+                            <p style="color: var(--medium-gray); font-size: 0.875rem; margin: 0.5rem 0 0 0;">JPG, PNG - Max 5 photos</p>
+                        </div>
+                        <input type="file" id="photoInput" multiple accept="image/*" style="display: none;" onchange="handlePhotoUpload(this.files)">
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <button type="button" onclick="closeAddPropertyModal()" style="padding: 12px 24px; border: 2px solid var(--medium-gray); background: white; color: var(--medium-gray); border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer;">
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn-premium">
+                            <i data-lucide="plus"></i> Ajouter le bien
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    // Ajouter l'événement de soumission
+    modal.querySelector('#addPropertyForm').addEventListener('submit', handleAddProperty);
+    
+    return modal;
+}
+
+/**
+ * Ferme la modal d'ajout de bien
+ */
+function closeAddPropertyModal() {
+    const modal = document.querySelector('.add-property-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
+    }
+}
+
+/**
+ * Gère l'upload des photos
+ */
+function handlePhotoUpload(files) {
+    const preview = document.getElementById('photoPreview');
+    preview.innerHTML = '';
+    
+    if (files.length > 5) {
+        showToast('Limite dépassée', 'Maximum 5 photos autorisées', 'warning');
+        return;
+    }
+    
+    Array.from(files).forEach((file, index) => {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.cssText = `
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 8px;
+                    border: 2px solid var(--silver);
+                `;
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
         }
-    }, 100);
+    });
+}
+
+/**
+ * Gère l'ajout d'un nouveau bien
+ */
+function handleAddProperty(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    
+    // Validation
+    const description = formData.get('description');
+    if (description.length < 100) {
+        showToast('Description trop courte', 'La description doit contenir au moins 100 caractères', 'warning');
+        return;
+    }
+    
+    // Animation de chargement
+    submitBtn.innerHTML = '<div class="loading-spinner" style="width: 20px; height: 20px; border-width: 2px;"></div> Ajout en cours...';
+    submitBtn.disabled = true;
+    
+    // Simuler l'ajout
+    setTimeout(() => {
+        const newProperty = {
+            id: Date.now(),
+            title: formData.get('title'),
+            location: formData.get('location'),
+            type: formData.get('type'),
+            price: parseInt(formData.get('price')),
+            bedrooms: parseInt(formData.get('bedrooms')) || 1,
+            area: parseInt(formData.get('area')) || 50,
+            description: formData.get('description'),
+            owner: currentUser.name,
+            status: 'Disponible',
+            images: ['https://i.ibb.co/NgYmgDcG/5931379510161296304-120.jpg'], // Image par défaut
+            rating: 4.0,
+            reviews: []
+        };
+        
+        // Sauvegarder en localStorage (simulation)
+        const ownerProperties = JSON.parse(localStorage.getItem(`properties_${currentUser.id}`) || '[]');
+        ownerProperties.push(newProperty);
+        localStorage.setItem(`properties_${currentUser.id}`, JSON.stringify(ownerProperties));
+        
+        closeAddPropertyModal();
+        showToast('Bien ajouté', 'Votre bien a été ajouté avec succès !', 'success');
+        
+        // Recharger la liste des biens si on est sur le dashboard
+        if (typeof loadPropertiesContent === 'function') {
+            loadPropertiesContent();
+        }
+    }, 2000);
+}
+
+// ================================
+// INITIALISATION AMÉLIORÉE
+// ================================
+
+// Modifier la fonction d'initialisation existante
+const originalInitializeApp = initializeApp;
+initializeApp = function() {
+    originalInitializeApp();
+    
+    // Ajouter les nouvelles fonctionnalités
+    initializeFadeInAnimations();
+    
+    console.log('✅ Fonctionnalités premium 2025 initialisées');
+};
     
     console.log('✅ Propriétés populaires chargées avec succès');
 }
@@ -647,6 +914,10 @@ function closeModal(modalId) {
 
 // === NOTIFICATIONS (TOASTS) ===
 
+// ================================
+// SYSTÈME DE NOTIFICATIONS PREMIUM
+// ================================
+
 /**
  * Affiche une notification toast
  * @param {string} title - Titre de la notification
@@ -654,36 +925,78 @@ function closeModal(modalId) {
  * @param {string} type - Type : success, error, warning, info
  */
 function showToast(title, message, type = 'info') {
-    const container = document.getElementById('toastContainer');
-    if (!container) return;
+    // Créer le container s'il n'existe pas
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toastContainer';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        `;
+        document.body.appendChild(container);
+    }
     
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `
-        <div class="toast-header">
-            <div class="toast-title">${title}</div>
-            <button class="toast-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
-        </div>
-        <div class="toast-message">${message}</div>
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.style.cssText = `
+        padding: 16px 24px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        animation: slideInRight 0.3s ease;
+        min-width: 300px;
+        max-width: 400px;
+        cursor: pointer;
     `;
     
-    container.appendChild(toast);
+    // Couleurs selon le type
+    const colors = {
+        error: '#dc2626',
+        success: '#10b981',
+        warning: '#f59e0b',
+        info: '#3b82f6'
+    };
     
-    // Animation d'entrée
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 100);
+    notification.style.background = colors[type] || colors.info;
+    toast.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div style="font-weight: 700; margin-bottom: 4px;">${title}</div>
+                <div style="font-weight: 400; opacity: 0.9;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; margin-left: 16px;">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(notification);
+    
+    // Fermeture au clic
+    notification.addEventListener('click', () => {
+        notification.remove();
+    });
     
     // Suppression automatique après 5 secondes
     setTimeout(() => {
-        if (toast.parentNode) {
-            toast.classList.remove('show');
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOutRight 0.3s ease';
             setTimeout(() => {
-                toast.remove();
+                notification.remove();
             }, 300);
         }
     }, 5000);
 }
+
+// ================================
+// SECTION LOGEMENTS POPULAIRES - CORRECTION CRITIQUE
+// ================================
 
 // === NAVIGATION MOBILE ===
 
