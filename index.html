@@ -6,6 +6,9 @@
     <title>LOCAYA - Location de logements à Abidjan</title>
     <meta name="description" content="Trouvez votre logement idéal à Abidjan avec LOCAYA. Villas, appartements, studios - Location simple et sécurisée.">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
     <!-- Open Graph -->
     <meta property="og:title" content="LOCAYA - Location de logements à Abidjan">
     <meta property="og:description" content="Plateforme moderne de location de logements à Abidjan">
@@ -46,7 +49,7 @@
                     </div>
                     
                     <button class="mobile-menu-btn" id="mobileMenuBtn">
-                        ☰
+                        <i data-lucide="menu"></i>
                     </button>
                 </nav>
             </div>
@@ -67,10 +70,10 @@
                 
                 <div class="hero-actions">
                     <a href="search.html" class="btn btn-primary btn-lg">
-                        🔍 Rechercher un logement
+                        <i data-lucide="search"></i> Rechercher un logement
                     </a>
                     <a href="#features" class="btn btn-secondary btn-lg">
-                        ✨ Découvrir LOCAYA
+                        <i data-lucide="sparkles"></i> Découvrir LOCAYA
                     </a>
                 </div>
                 
@@ -79,7 +82,7 @@
                     <form class="search-form" id="quickSearchForm">
                         <div class="form-group">
                             <input type="text" id="location" name="location" placeholder=" " required>
-                            <label for="location">📍 Localisation</label>
+                            <label for="location"><i data-lucide="map-pin"></i> Localisation</label>
                         </div>
                         
                         <div class="form-group">
@@ -126,37 +129,37 @@
             
             <div class="features-grid">
                 <div class="feature-card animate-on-scroll" style="animation-delay: 0.1s;">
-                    <div class="feature-icon">🏠</div>
+                    <div class="feature-icon"><i data-lucide="building"></i></div>
                     <h3>Large sélection</h3>
                     <p>Plus de 500+ logements disponibles dans tous les quartiers d'Abidjan. Villas, appartements, studios - Trouvez exactement ce que vous cherchez.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll" style="animation-delay: 0.2s;">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon"><i data-lucide="zap"></i></div>
                     <h3>Recherche rapide</h3>
                     <p>Notre système de filtrage intelligent vous permet de trouver votre logement idéal en quelques clics. Filtrez par prix, quartier, type et plus encore.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll" style="animation-delay: 0.3s;">
-                    <div class="feature-icon">🔒</div>
+                    <div class="feature-icon"><i data-lucide="shield-check"></i></div>
                     <h3>Sécurisé et fiable</h3>
                     <p>Tous nos logements sont vérifiés. Propriétaires certifiés, photos authentiques et informations fiables pour une location en toute sécurité.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll" style="animation-delay: 0.4s;">
-                    <div class="feature-icon">📱</div>
+                    <div class="feature-icon"><i data-lucide="smartphone"></i></div>
                     <h3>Mobile-first</h3>
                     <p>Recherchez, contactez et gérez vos favoris depuis votre smartphone. Interface optimisée pour une expérience mobile parfaite.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll" style="animation-delay: 0.5s;">
-                    <div class="feature-icon">💬</div>
+                    <div class="feature-icon"><i data-lucide="message-circle"></i></div>
                     <h3>Contact direct</h3>
                     <p>Contactez directement les propriétaires via notre messagerie intégrée. Négociation simple et transparente, sans intermédiaire.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll" style="animation-delay: 0.6s;">
-                    <div class="feature-icon">⭐</div>
+                    <div class="feature-icon"><i data-lucide="star"></i></div>
                     <h3>Avis vérifiés</h3>
                     <p>Consultez les avis d'anciens locataires pour faire le bon choix. Système de notation transparent et commentaires authentiques.</p>
                 </div>
@@ -264,7 +267,7 @@
                     <div style="display: flex; flex-direction: column; gap: var(--spacing-6);">
                         <div style="display: flex; align-items: center; gap: var(--spacing-4);">
                             <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--font-size-lg);">
-                                📍
+                                <i data-lucide="map-pin"></i>
                             </div>
                             <div>
                                 <h4 style="margin-bottom: var(--spacing-1);">Adresse</h4>
@@ -274,7 +277,7 @@
                         
                         <div style="display: flex; align-items: center; gap: var(--spacing-4);">
                             <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--font-size-lg);">
-                                📞
+                                <i data-lucide="phone"></i>
                             </div>
                             <div>
                                 <h4 style="margin-bottom: var(--spacing-1);">Téléphone</h4>
@@ -284,7 +287,7 @@
                         
                         <div style="display: flex; align-items: center; gap: var(--spacing-4);">
                             <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--font-size-lg);">
-                                ✉️
+                                <i data-lucide="mail"></i>
                             </div>
                             <div>
                                 <h4 style="margin-bottom: var(--spacing-1);">Email</h4>
@@ -341,10 +344,10 @@
                         Trouvez votre chez-vous facilement et en toute sécurité.
                     </p>
                     <div style="display: flex; gap: var(--spacing-3);">
-                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">📘</a>
-                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">📷</a>
-                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">🐦</a>
-                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);">💼</a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);"><i data-lucide="facebook"></i></a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);"><i data-lucide="instagram"></i></a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);"><i data-lucide="twitter"></i></a>
+                        <a href="#" style="color: var(--gray-300); font-size: var(--font-size-xl);"><i data-lucide="linkedin"></i></a>
                     </div>
                 </div>
                 
@@ -374,9 +377,9 @@
                 
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <p style="color: var(--gray-300);">📍 Plateau, Abidjan</p>
-                    <p style="color: var(--gray-300);">📞 +225 27 20 00 00 00</p>
-                    <p style="color: var(--gray-300);">✉️ contact@locaya.ci</p>
+                    <p style="color: var(--gray-300);"><i data-lucide="map-pin"></i> Plateau, Abidjan</p>
+                    <p style="color: var(--gray-300);"><i data-lucide="phone"></i> +225 27 20 00 00 00</p>
+                    <p style="color: var(--gray-300);"><i data-lucide="mail"></i> contact@locaya.ci</p>
                 </div>
             </div>
             
@@ -391,25 +394,25 @@
         <ul class="bottom-nav-items">
             <li class="bottom-nav-item">
                 <a href="#" class="active">
-                    <span class="icon">🏠</span>
+                    <span class="icon"><i data-lucide="home"></i></span>
                     <span>Accueil</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="search.html">
-                    <span class="icon">🔍</span>
+                    <span class="icon"><i data-lucide="search"></i></span>
                     <span>Recherche</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="dashboard.html">
-                    <span class="icon">❤️</span>
+                    <span class="icon"><i data-lucide="heart"></i></span>
                     <span>Favoris</span>
                 </a>
             </li>
             <li class="bottom-nav-item">
                 <a href="dashboard.html">
-                    <span class="icon">👤</span>
+                    <span class="icon"><i data-lucide="user"></i></span>
                     <span>Profil</span>
                 </a>
             </li>
@@ -421,5 +424,13 @@
 
     <!-- Scripts -->
     <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>
