@@ -410,13 +410,22 @@ a:hover {
   display: inline-block;
   overflow: hidden;
   border-right: 4px solid var(--secondary-gold);
-  white-space: nowrap;
   color: var(--pure-white);
+  text-align: center;
+  width: 100%;
   animation: 
     typewriter 3s steps(40, end) 1s forwards,
+    center-text 0.1s 4s forwards,
     blink 1s infinite 4s;
 }
 
+@keyframes center-text {
+  to {
+    border-right: none;
+    white-space: normal;
+    overflow: visible;
+  }
+}
 .hero-subtitle {
   font-size: var(--font-size-xl);
   font-weight: var(--font-regular);

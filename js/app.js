@@ -108,19 +108,27 @@ async function loadProperties() {
 /**
  * Charge et affiche les propriétés populaires sur la page d'accueil
  */
-function loadPopularProperties() {
+async function loadPopularProperties() {
+    console.log('🏠 Chargement des propriétés populaires...');
+    
     if (properties.length === 0) {
-        setTimeout(loadPopularProperties, 500);
+        console.log('⏳ Propriétés pas encore chargées, retry dans 500ms');
+        setTimeout(loadPopularProperties, 1000);
         return;
     }
     
     const container = document.getElementById('popularProperties');
-    if (!container) return;
+    if (!container) {
+        console.log('❌ Container popularProperties non trouvé');
+        return;
+    }
     
     // Prendre les 6 propriétés les mieux notées
     const popularProps = properties
         .sort((a, b) => b.rating - a.rating)
         .slice(0, 6);
+    
+    console.log(`📊 ${popularProps.length} propriétés populaires trouvées`);
     
     container.innerHTML = popularProps.map((property, index) => 
         createPropertyCard(property, index * 100)
@@ -129,7 +137,13 @@ function loadPopularProperties() {
     // Réinitialiser les animations pour les nouvelles cartes
     setTimeout(() => {
         initializeScrollAnimations();
+        // Réinitialiser les icônes Lucide
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }, 100);
+    
+    console.log('✅ Propriétés populaires chargées avec succès');
 }
 
 // === ANIMATIONS ET EFFETS VISUELS ===

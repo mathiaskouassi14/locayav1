@@ -19,7 +19,7 @@
         <div class="container">
             <div class="flex-between">
                 <a href="index.html" class="logo">
-                    <img src="https://i.ibb.co/ff99bRD/5924543068982331981-120.jpg" alt="LOCAYA">
+                    <img src="https://i.ibb.co/4gj4vCgv/5924543068982331982-120.jpg" alt="LOCAYA">
                     LOCAYA
                 </a>
                 
@@ -99,10 +99,113 @@
                     <button data-tab="profile" onclick="switchTab('profile')">
                         <i data-lucide="user"></i> Profil
                     </button>
+                    <button data-tab="properties" onclick="switchTab('properties')" id="propertiesTab" style="display: none;">
+                        <i data-lucide="building"></i> Mes Biens
+                    </button>
+                    <button data-tab="analytics" onclick="switchTab('analytics')" id="analyticsTab" style="display: none;">
+                        <i data-lucide="bar-chart-3"></i> Statistiques
+                    </button>
                 </div>
             </div>
         </div>
 
+        <!-- Properties Tab (Owner only) -->
+        <div id="properties-tab" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6); flex-wrap: wrap; gap: var(--spacing-4);">
+                <div>
+                    <h2>Mes Biens Immobiliers</h2>
+                    <p style="color: var(--gray-600); margin-top: var(--spacing-2);">
+                        Gérez vos propriétés et suivez leurs performances
+                    </p>
+                </div>
+                <button onclick="addNewProperty()" class="btn btn-primary">
+                    <i data-lucide="plus"></i> Ajouter un bien
+                </button>
+            </div>
+            
+            <div id="ownerPropertiesList" class="grid grid-3">
+                <!-- Owner properties will be loaded here -->
+            </div>
+            
+            <div id="noOwnerProperties" style="display: none; text-align: center; padding: var(--spacing-12);">
+                <div style="font-size: 4rem; margin-bottom: var(--spacing-4); opacity: 0.5;">🏠</div>
+                <h3 style="margin-bottom: var(--spacing-4);">Aucun bien enregistré</h3>
+                <p style="color: var(--gray-600); margin-bottom: var(--spacing-6);">
+                    Commencez par ajouter votre premier bien immobilier
+                </p>
+                <button onclick="addNewProperty()" class="btn btn-primary">
+                    <i data-lucide="plus"></i> Ajouter mon premier bien
+                </button>
+            </div>
+        </div>
+
+        <!-- Analytics Tab (Owner only) -->
+        <div id="analytics-tab" class="tab-content">
+            <div style="margin-bottom: var(--spacing-8);">
+                <h2>Statistiques de Performance</h2>
+                <p style="color: var(--gray-600); margin-top: var(--spacing-2);">
+                    Analysez les performances de vos biens immobiliers
+                </p>
+            </div>
+            
+            <!-- Analytics Stats -->
+            <div class="dashboard-stats" style="margin-bottom: var(--spacing-10);">
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number" id="totalViews">0</div>
+                    <div class="stat-label">Vues totales</div>
+                    <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">
+                        <i data-lucide="eye"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="stat-number" id="totalContacts">0</div>
+                    <div class="stat-label">Contacts reçus</div>
+                    <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">
+                        <i data-lucide="phone"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="stat-number" id="averageRating">0</div>
+                    <div class="stat-label">Note moyenne</div>
+                    <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">
+                        <i data-lucide="star"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="stat-number" id="monthlyRevenue">0</div>
+                    <div class="stat-label">Revenus mensuels</div>
+                    <div style="color: var(--primary-violet); margin-top: var(--spacing-2);">
+                        <i data-lucide="coins"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Charts -->
+            <div class="grid-2" style="gap: var(--spacing-8);">
+                <div class="card">
+                    <h3 style="margin-bottom: var(--spacing-6);">Évolution des vues</h3>
+                    <div style="height: 300px; background: var(--gray-50); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--gray-600);">
+                        <div style="text-align: center;">
+                            <i data-lucide="trending-up" style="width: 48px; height: 48px; margin-bottom: var(--spacing-4);"></i>
+                            <p>Graphique des vues (à venir)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 style="margin-bottom: var(--spacing-6);">Répartition par type</h3>
+                    <div style="height: 300px; background: var(--gray-50); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--gray-600);">
+                        <div style="text-align: center;">
+                            <i data-lucide="pie-chart" style="width: 48px; height: 48px; margin-bottom: var(--spacing-4);"></i>
+                            <p>Graphique en secteurs (à venir)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Dashboard Content -->
         <div class="dashboard-content">
             <div class="container">
