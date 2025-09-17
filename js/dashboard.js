@@ -93,10 +93,16 @@ function initializeDashboardUI() {
     // Mettre à jour le titre selon le type de compte
     const dashboardTitle = document.getElementById('dashboardTitle');
     const dashboardSubtitle = document.getElementById('dashboardSubtitle');
+    const propertiesTab = document.getElementById('propertiesTab');
+    const analyticsTab = document.getElementById('analyticsTab');
     
     if (currentUser.accountType === 'owner') {
         if (dashboardTitle) dashboardTitle.textContent = 'Espace Propriétaire';
         if (dashboardSubtitle) dashboardSubtitle.textContent = 'Gérez vos biens et contacts';
+        
+        // Afficher les onglets propriétaire
+        if (propertiesTab) propertiesTab.style.display = 'block';
+        if (analyticsTab) analyticsTab.style.display = 'block';
     }
     
     // Charger les statistiques
@@ -178,6 +184,12 @@ function switchTab(tabName) {
                 break;
             case 'profile':
                 loadProfileContent();
+                break;
+            case 'properties':
+                loadPropertiesContent();
+                break;
+            case 'analytics':
+                loadAnalyticsContent();
                 break;
         }
         
@@ -308,6 +320,69 @@ function loadMessagesContent() {
  */
 function loadProfileContent() {
     // Le contenu est déjà initialisé dans initializeProfileForm
+}
+
+/**
+ * Charge le contenu de l'onglet propriétés (propriétaires)
+ */
+function loadPropertiesContent() {
+    if (currentUser.accountType !== 'owner') return;
+    
+    const propertiesList = document.getElementById('ownerPropertiesList');
+    const noProperties = document.getElementById('noOwnerProperties');
+    
+    // Simuler les propriétés du propriétaire
+    const ownerProperties = properties.filter(p => 
+        p.contact.email === currentUser.email || 
+        Math.random() > 0.7 // Simulation
+    ).slice(0, 3);
+    
+    if (ownerProperties.length === 0) {
+        propertiesList.style.display = 'none';
+        noProperties.style.display = 'block';
+        return;
+    }
+    
+    noProperties.style.display = 'none';
+    propertiesList.style.display = 'grid';
+    
+    propertiesList.innerHTML = ownerProperties.map((property, index) => 
+        createOwnerPropertyCard(property, index * 100)
+    ).join('');
+    
+    // Réinitialiser les animations
+    setTimeout(() => {
+        initializeScrollAnimations();
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }, 100);
+}
+
+/**
+ * Charge le contenu de l'onglet analytics (propriétaires)
+ */
+function loadAnalyticsContent() {
+    if (currentUser.accountType !== 'owner') return;
+    
+    // Simuler des statistiques
+    const stats = {
+        totalViews: Math.floor(Math.random() * 5000) + 1000,
+        totalContacts: Math.floor(Math.random() * 200) + 50,
+        averageRating: (Math.random() * 2 + 3).toFixed(1),
+        monthlyRevenue: Math.floor(Math.random() * 2000000) + 500000
+    };
+    
+    // Mettre à jour les statistiques
+    document.getElementById('totalViews').textContent = stats.totalViews.toLocaleString();
+    document.getElementById('totalContacts').textContent = stats.totalContacts;
+    document.getElementById('averageRating').textContent = stats.averageRating + '/5';
+    document.getElementById('monthlyRevenue').textContent = formatPrice(stats.monthlyRevenue) + ' FCFA';
+    
+    // Animer les compteurs
+    setTimeout(() => {
+        initializeCounters();
+    }, 500);
 }
 
 // === CRÉATION DES CARTES ===
@@ -462,6 +537,109 @@ function createMessageCard(message, delay = 0) {
             </div>
         </div>
     `;
+}
+
+/**
+ * Crée une carte de propriété pour le propriétaire
+ */
+function createOwnerPropertyCard(property, delay = 0) {
+    const views = Math.floor(Math.random() * 500) + 100;
+    const contacts = Math.floor(Math.random() * 20) + 5;
+    
+    return `
+        <div class="property-card hover-lift fade-in-up" style="animation-delay: ${delay}ms;" data-property-id="${property.id}">
+            <div class="property-image">
+                <img src="${property.images[0]}" alt="${property.title}" loading="lazy">
+                <div class="property-badge">${property.status}</div>
+                <div style="position: absolute; top: var(--spacing-4); right: var(--spacing-4); display: flex; gap: var(--spacing-2);">
+                    <button onclick="editProperty(${property.id})" class="btn btn-outline btn-sm" title="Modifier">
+                        <i data-lucide="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button onclick="deleteProperty(${property.id})" class="btn btn-danger btn-sm" title="Supprimer">
+                        <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="property-content">
+                <h3 class="property-title">${property.title}</h3>
+                <div class="property-location">
+                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i> ${property.location}
+                </div>
+                
+                <div class="property-features">
+                    <span><i data-lucide="bed" style="width: 14px; height: 14px;"></i> ${property.bedrooms} ch.</span>
+                    <span><i data-lucide="bath" style="width: 14px; height: 14px;"></i> ${property.bathrooms} sdb</span>
+                    <span><i data-lucide="square" style="width: 14px; height: 14px;"></i> ${property.area}m²</span>
+                </div>
+                
+                <div class="property-price">
+                    ${formatPrice(property.price)} FCFA/${property.period}
+                </div>
+                
+                <!-- Statistiques propriétaire -->
+                <div style="display: flex; justify-content: space-between; margin: var(--spacing-4) 0; padding: var(--spacing-3); background: var(--gray-50); border-radius: var(--radius-lg);">
+                    <div style="text-align: center;">
+                        <div style="font-weight: var(--font-weight-bold); color: var(--primary-violet);">${views}</div>
+                        <div style="font-size: var(--font-size-xs); color: var(--gray-600);">Vues</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-weight: var(--font-weight-bold); color: var(--primary-violet);">${contacts}</div>
+                        <div style="font-size: var(--font-size-xs); color: var(--gray-600);">Contacts</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-weight: var(--font-weight-bold); color: var(--primary-violet);">${property.rating}/5</div>
+                        <div style="font-size: var(--font-size-xs); color: var(--gray-600);">Note</div>
+                    </div>
+                </div>
+                
+                <div class="property-actions">
+                    <a href="property.html?id=${property.id}" class="btn btn-primary btn-sm">
+                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i> Voir
+                    </a>
+                    <button onclick="togglePropertyStatus(${property.id})" class="btn btn-outline btn-sm">
+                        <i data-lucide="toggle-left" style="width: 16px; height: 16px;"></i> ${property.status}
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Ajouter une nouvelle propriété
+ */
+function addNewProperty() {
+    showToast('Nouvelle propriété', 'Fonctionnalité en développement', 'info');
+}
+
+/**
+ * Modifier une propriété
+ */
+function editProperty(propertyId) {
+    showToast('Modifier propriété', 'Fonctionnalité en développement', 'info');
+}
+
+/**
+ * Supprimer une propriété
+ */
+function deleteProperty(propertyId) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette propriété ?')) {
+        showToast('Propriété supprimée', 'La propriété a été supprimée avec succès', 'success');
+        loadPropertiesContent();
+    }
+}
+
+/**
+ * Toggle le statut d'une propriété
+ */
+function togglePropertyStatus(propertyId) {
+    const property = properties.find(p => p.id === propertyId);
+    if (property) {
+        property.status = property.status === 'Disponible' ? 'Loué' : 'Disponible';
+        showToast('Statut modifié', `Propriété marquée comme ${property.status}`, 'success');
+        loadPropertiesContent();
+    }
 }
 
 // === ACTIONS FAVORIS ===
