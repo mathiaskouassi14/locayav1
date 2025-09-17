@@ -17,11 +17,11 @@ html {
 }
 
 body {
-  font-family: var(--font-family-primary);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: 1.6;
-  color: var(--charcoal);
+  color: var(--primary-black);
   background-color: var(--pure-white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -242,13 +242,14 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2);
-  padding: var(--spacing-4) var(--spacing-6);
+  border-radius: 12px;
   font-size: var(--font-size-base);
   font-weight: var(--font-semibold);
   font-family: var(--font-family-primary);
   text-decoration: none;
   border: none;
   border-radius: var(--radius-xl);
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: all var(--transition-premium);
   position: relative;
@@ -259,15 +260,15 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--gradient-button);
+  background: var(--gradient-primary);
   color: var(--pure-white);
-  box-shadow: var(--shadow-button);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
   border: 2px solid transparent;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-button-hover);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
   color: var(--pure-white);
   text-decoration: none;
 }
@@ -352,7 +353,7 @@ a:hover {
 
 /* === HERO SECTION PREMIUM === */
 .hero {
-  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-black) 0%, var(--charcoal) 100%);
   position: relative;
   background: var(--gradient-hero);
   background-size: 400% 400%;
@@ -399,7 +400,9 @@ a:hover {
   font-weight: var(--font-black);
   margin-bottom: var(--spacing-8);
   opacity: 0;
-  animation: fadeInUp 1s var(--ease-out-quart) 0.5s forwards;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
   line-height: 1.1;
   color: var(--pure-white);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -423,7 +426,15 @@ a:hover {
   to {
     border-right: none;
     white-space: normal;
-    overflow: visible;
+  50% { border-color: var(--accent-gold); }
+}
+
+@keyframes center-after-typing {
+  to {
+    border-right: none;
+    text-align: center;
+    width: 100%;
+  }
   }
 }
 .hero-subtitle {
@@ -562,25 +573,32 @@ a:hover {
 
 .property-card {
   background: var(--pure-white);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-premium);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--silver);
   transition: all var(--transition-premium);
   position: relative;
   border: 1px solid var(--soft-gray);
 }
 
 .property-card:hover {
-  transform: translateY(-12px);
-  box-shadow: var(--shadow-premium-hover);
-  border-color: var(--primary-purple);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .property-image {
   position: relative;
   height: 240px;
   overflow: hidden;
-  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  border-radius: 16px 16px 0 0;
+}
+
+.property-image img {
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-image img {
+  transform: scale(1.05);
 }
 
 .property-image img {
@@ -2265,10 +2283,10 @@ textarea:focus {
   display: inline-block;
   width: 60px;
   height: 34px;
-}
+  border-right: 3px solid var(--accent-gold);
 
 .switch input {
-  opacity: 0;
+  animation: typewriter 4s steps(40) 1s forwards, blink 1s infinite, center-after-typing 0.5s 5s forwards;
   width: 0;
   height: 0;
 }
